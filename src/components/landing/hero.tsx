@@ -29,7 +29,7 @@ export function Hero() {
         </Reveal>
 
         <Reveal delay={0.08}>
-          <h1 className="mt-8 font-display text-4xl font-bold leading-[1.08] tracking-tight text-slate-400 sm:text-5xl md:text-[4.2rem]">
+          <h1 className="mt-8 font-display text-4xl font-bold leading-[1.08] tracking-tight text-slate-300 sm:text-5xl md:text-[4.2rem]">
             {t.hero.lead1}
             <span className="text-gradient-brand">{t.hero.highlight}</span>
             {t.hero.lead2}
