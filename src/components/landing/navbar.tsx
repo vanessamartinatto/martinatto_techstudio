@@ -9,20 +9,20 @@ export function Logo({ dark = false }: { dark?: boolean }) {
   const { t } = useLanguage();
   return (
     <a href="#" className="flex items-center gap-3" aria-label="VM Tech Studio">
-      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-sky-500 via-sky-300 to-orange-300 font-display text-base font-bold text-white shadow-md shadow-sky-500/25">
+      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 via-indigo-400 to-cyan-400 font-display text-base font-bold text-white shadow-md shadow-violet-500/30">
         VM
       </span>
       <span className="leading-tight">
         <span
           className={`block font-display text-base font-bold ${
-            dark ? "text-white" : "text-slate-900"
+            dark ? "text-white" : "text-white"
           }`}
         >
           VM Tech Studio
         </span>
         <span
           className={`block font-mono text-[10px] uppercase tracking-[0.18em] ${
-            dark ? "text-sky-300" : "text-slate-500"
+            dark ? "text-cyan-300/80" : "text-slate-400"
           }`}
         >
           {t.footer.tagline}
@@ -39,7 +39,7 @@ function LangSwitcher() {
     <div
       role="group"
       aria-label="Language"
-      className="flex items-center gap-0.5 rounded-full border border-slate-200 bg-white/80 p-1"
+      className="flex items-center gap-0.5 rounded-full border border-white/10 bg-white/5 p-1"
     >
       {options.map((l) => (
         <button
@@ -49,8 +49,8 @@ function LangSwitcher() {
           aria-pressed={lang === l}
           className={`rounded-full px-2.5 py-1 font-mono text-[11px] tracking-wider transition-colors ${
             lang === l
-              ? "bg-slate-900 text-white shadow-sm"
-              : "text-slate-500 hover:bg-sky-50 hover:text-sky-700"
+              ? "bg-white text-slate-900 shadow-sm"
+              : "text-slate-400 hover:bg-white/10 hover:text-white"
           }`}
         >
           {l.toUpperCase()}
@@ -72,7 +72,7 @@ export function Navbar() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 border-b border-sky-100/70 bg-white/75 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-white/[0.06] bg-[#05070D]/75 backdrop-blur-xl">
       <div className="mx-auto flex h-[72px] max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <Logo />
 
@@ -81,7 +81,7 @@ export function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-slate-600 transition-colors hover:text-sky-600"
+              className="text-sm font-medium text-slate-400 transition-colors hover:text-white"
             >
               {link.label}
             </a>
@@ -92,7 +92,7 @@ export function Navbar() {
           <LangSwitcher />
           <a
             href="#contatto"
-            className="rounded-full bg-slate-900 px-5 py-2.5 text-sm font-medium text-white shadow-lg shadow-slate-900/15 transition-all hover:-translate-y-0.5 hover:bg-sky-600 hover:shadow-sky-500/30"
+            className="rounded-full bg-white px-5 py-2.5 text-sm font-medium text-slate-900 shadow-lg shadow-white/10 transition-all hover:-translate-y-0.5 hover:bg-violet-500 hover:text-white hover:shadow-violet-500/30"
           >
             {t.nav.bookCall}
           </a>
@@ -100,7 +100,7 @@ export function Navbar() {
 
         <button
           type="button"
-          className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 lg:hidden"
+          className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-200 lg:hidden"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-label="Toggle menu"
@@ -110,14 +110,14 @@ export function Navbar() {
       </div>
 
       {open && (
-        <div className="border-t border-sky-100 bg-white/95 px-4 pb-6 pt-4 backdrop-blur-xl lg:hidden">
+        <div className="border-t border-white/[0.06] bg-[#05070D]/95 px-4 pb-6 pt-4 backdrop-blur-xl lg:hidden">
           <nav className="flex flex-col gap-1" aria-label="Mobile">
             {links.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="rounded-xl px-3 py-3 text-sm font-medium text-slate-700 transition-colors hover:bg-sky-50 hover:text-sky-700"
+                className="rounded-xl px-3 py-3 text-sm font-medium text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
               >
                 {link.label}
               </a>
@@ -128,7 +128,7 @@ export function Navbar() {
             <a
               href="#contatto"
               onClick={() => setOpen(false)}
-              className="rounded-full bg-slate-900 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-sky-600"
+              className="rounded-full bg-white px-5 py-2.5 text-sm font-medium text-slate-900 transition-colors hover:bg-violet-500 hover:text-white"
             >
               {t.nav.bookCall}
             </a>

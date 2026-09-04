@@ -7,22 +7,23 @@ import { Reveal } from "./shared";
 export function Hero() {
   const { t } = useLanguage();
 
-  const statColors = ["text-sky-600", "text-slate-900", "text-orange-500"];
+  const statColors = ["text-cyan-400", "text-white", "text-violet-400"];
 
   return (
     <section className="relative overflow-hidden">
-      {/* Decorative background — Sky & Peach */}
+      {/* Decorative background — Deep Space Tech */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-sky-50/90 via-[#F7FBFF] to-orange-50/70" />
-        <div className="bg-dot-grid absolute inset-0 opacity-70" />
-        <div className="animate-blob absolute -left-32 -top-24 h-96 w-96 rounded-full bg-sky-200/50 blur-3xl" />
-        <div className="animate-blob-delayed absolute -right-32 top-1/4 h-[26rem] w-[26rem] rounded-full bg-orange-200/50 blur-3xl" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0A0E1C] via-[#05070D] to-[#070B14]" />
+        <div className="bg-dot-grid absolute inset-0 opacity-80" />
+        <div className="animate-blob absolute -left-32 -top-24 h-96 w-96 rounded-full bg-violet-600/20 blur-3xl" />
+        <div className="animate-blob-delayed absolute -right-32 top-1/4 h-[26rem] w-[26rem] rounded-full bg-cyan-500/15 blur-3xl" />
+        <div className="absolute left-1/2 top-24 h-64 w-[36rem] -translate-x-1/2 rounded-full bg-indigo-600/10 blur-3xl" />
       </div>
 
       <div className="relative mx-auto max-w-5xl px-4 pb-20 pt-16 text-center sm:px-6 md:pb-28 md:pt-24">
         <Reveal>
-          <span className="inline-flex items-center gap-2 rounded-full border border-sky-200 bg-white/80 px-5 py-2 font-mono text-[11px] tracking-widest text-sky-700 shadow-sm shadow-sky-100 sm:text-xs">
-            <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-sky-500 to-orange-400" />
+          <span className="inline-flex items-center gap-2 rounded-full border border-violet-400/25 bg-violet-500/10 px-5 py-2 font-mono text-[11px] tracking-widest text-violet-200 shadow-[0_0_24px_rgba(139,92,246,0.15)] sm:text-xs">
+            <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-violet-400 to-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
             {t.hero.badge}
           </span>
         </Reveal>
@@ -36,7 +37,7 @@ export function Hero() {
         </Reveal>
 
         <Reveal delay={0.16}>
-          <p className="mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-slate-600 md:text-xl">
+          <p className="mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-slate-400 md:text-xl">
             {t.hero.subtitle}
           </p>
         </Reveal>
@@ -45,14 +46,14 @@ export function Hero() {
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a
               href="#contatto"
-              className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-sky-600 px-8 py-4 text-base font-medium text-white shadow-xl shadow-sky-600/25 transition-all hover:-translate-y-0.5 hover:bg-sky-500 hover:shadow-2xl hover:shadow-orange-400/25 sm:w-auto"
+              className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-violet-600 to-cyan-500 px-8 py-4 text-base font-medium text-white shadow-xl shadow-violet-600/30 transition-all hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-cyan-500/30 sm:w-auto"
             >
               <Rocket className="h-5 w-5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               {t.hero.ctaPrimary}
             </a>
             <a
               href="#caso-studio"
-              className="group inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white/80 px-8 py-4 text-base font-medium text-slate-700 backdrop-blur transition-all hover:-translate-y-0.5 hover:border-orange-300 hover:text-orange-600 sm:w-auto"
+              className="group inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-8 py-4 text-base font-medium text-slate-200 backdrop-blur transition-all hover:-translate-y-0.5 hover:border-cyan-400/40 hover:text-cyan-300 sm:w-auto"
             >
               {t.hero.ctaSecondary}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -61,12 +62,12 @@ export function Hero() {
         </Reveal>
 
         <Reveal delay={0.32}>
-          <dl className="mx-auto mt-16 grid max-w-4xl grid-cols-1 gap-8 rounded-[2rem] border border-sky-100/80 bg-white/70 p-8 shadow-2xl shadow-sky-900/5 backdrop-blur sm:grid-cols-3 md:p-10">
+          <dl className="mx-auto mt-16 grid max-w-4xl grid-cols-1 gap-8 rounded-[2rem] border border-white/[0.08] bg-white/[0.03] p-8 shadow-2xl shadow-violet-950/40 backdrop-blur sm:grid-cols-3 md:p-10">
             {t.hero.stats.map((stat, i) => (
               <div
                 key={stat.label}
                 className={`text-center ${
-                  i > 0 ? "sm:border-l sm:border-slate-200/80" : ""
+                  i > 0 ? "sm:border-l sm:border-white/[0.08]" : ""
                 }`}
               >
                 <dd

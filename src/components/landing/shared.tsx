@@ -38,11 +38,11 @@ export function SectionTitle({
 }) {
   return (
     <Reveal className={center ? "text-center" : ""}>
-      <p className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-sky-600 md:text-sm">
+      <p className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-violet-400 md:text-sm">
         {"// "}
         {label}
       </p>
-      <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 md:text-5xl">
+      <h2 className="font-display text-4xl font-bold tracking-tight text-white md:text-5xl">
         {title}
       </h2>
     </Reveal>

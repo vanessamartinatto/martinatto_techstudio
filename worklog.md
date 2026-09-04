@@ -1,6 +1,24 @@
 # Worklog
 
 ---
+Task ID: 2
+Agent: Main agent (Super Z)
+Task: Trocar paleta Sky & Peach por paleta tecnológica e moderna (solicitação do usuário)
+
+Work Log:
+- Pesquisado via web-search: tendências 2025/2026 confirmam estética dark tech estilo Vercel/Linear (deep black + gradientes blue/purple, grid sutil, glow)
+- Definida paleta "Deep Space Tech": fundo #05070D, cards #0B0E16, violeta elétrico #8B5CF6, ciano #22D3EE, gradiente violeta→índigo→ciano
+- globals.css: tokens shadcn convertidos para dark, .text-gradient-brand recolorido, dot grid violeta, ::selection violeta
+- Todos os componentes atualizados: navbar escura com CTA branco estilo Vercel, hero com badges/glow violeta-ciano, cards com bordas white/8 e hovers violeta/cyan alternados, caso studio com gradiente violet-950→cyan-950, formulário com inputs dark (bg-white/[0.03]) e select dark, footer #04050A com tagline em gradiente
+- Corrigida falha encontrada no E2E: formulário permitia envio sem "Tipo di Progetto" (API 400). Adicionada validação client-side com toast de erro
+- Verificado com Agent Browser: hero, benefícios, serviços, caso studio, about, contato, footer, mobile e envio de formulário (POST 201 + toast) — tudo funcionando sem erros de console; lint limpo
+
+Stage Summary:
+- Identidade visual substituída de Sky & Peach (light) para Deep Space Tech (dark): #05070D + violeta elétrico #8B5CF6 + ciano #22D3EE
+- Validação client-side de projectType adicionada em contact.tsx
+- Funcionalidades preservadas: i18n IT/EN/PT, persistência no SQLite, menu mobile, animações
+
+---
 Task ID: 1
 Agent: Main agent (Super Z)
 Task: Criar página web baseada no PDF "VM Tech Studio | MVP e Automazione IA in settimane" com paleta Sky & Peach
