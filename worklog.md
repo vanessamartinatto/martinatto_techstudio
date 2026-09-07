@@ -93,3 +93,18 @@ Stage Summary:
 - Formulário de contato persiste no SQLite via /api/contact com validação zod
 - Seletor de idioma IT/EN/PT funcional com persistência
 - Arquivos-chave: src/app/page.tsx, src/lib/i18n.ts, src/components/landing/*, src/app/api/contact/route.ts, prisma/schema.prisma, src/app/globals.css, src/app/layout.tsx
+
+---
+Task ID: 6
+Agent: Super Z (main)
+Task: Header rebrand — replace "VM" badge + "VM Tech Studio" text with the client's attached logo image, keep "AI SOFTWARE & CONSULTING"
+
+Work Log:
+- Copied upload "Untitled Project (3).png" (VM Studio diamond logo, purple/cyan) to public/images/vm-studio-logo.png
+- Rewrote Logo component in src/components/landing/navbar.tsx: removed gradient badge + old vm-logo.png + "VM Tech Studio" text; now renders the new image (h-12, rounded-xl, ring + violet shadow) followed by the tagline (t.footer.tagline = "AI Software & Consulting", displayed uppercase mono, responsive 10px/11px)
+- Footer inherits the change automatically (shared Logo component, dark variant keeps cyan tagline)
+- bun run lint -> clean; agent-browser verified desktop 1440px header+footer and mobile 390px header; no console errors
+
+Stage Summary:
+- Header/footer brand area now: [VM Studio image] "AI SOFTWARE & CONSULTING"; "VM Tech Studio" phrase removed from UI (still present only in metadata/title)
+- New asset: public/images/vm-studio-logo.png (old public/images/vm-logo.png still used by about.tsx, untouched)

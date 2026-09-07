@@ -9,32 +9,21 @@ import type { Lang } from "@/lib/i18n";
 export function Logo({ dark = false }: { dark?: boolean }) {
   const { t } = useLanguage();
   return (
-    <a href="#" className="flex items-center gap-3" aria-label="VM Tech Studio">
-      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-violet-600 via-indigo-500 to-cyan-500 shadow-md shadow-violet-600/30">
-        <Image
-          src="/images/vm-logo.png"
-          alt=""
-          width={32}
-          height={32}
-          priority
-          className="h-8 w-8 [filter:drop-shadow(0_0_2px_rgba(255,255,255,0.65))]"
-        />
-      </span>
-      <span className="leading-tight">
-        <span
-          className={`block font-display text-base font-bold ${
-            dark ? "text-white" : "text-white"
-          }`}
-        >
-          VM Tech Studio
-        </span>
-        <span
-          className={`block font-mono text-[10px] uppercase tracking-[0.18em] ${
-            dark ? "text-cyan-300/80" : "text-slate-400"
-          }`}
-        >
-          {t.footer.tagline}
-        </span>
+    <a href="#" className="flex items-center gap-3" aria-label="VM Studio">
+      <Image
+        src="/images/vm-studio-logo.png"
+        alt="VM Studio"
+        width={48}
+        height={48}
+        priority
+        className="h-12 w-12 shrink-0 rounded-xl shadow-md shadow-violet-600/25 ring-1 ring-white/10"
+      />
+      <span
+        className={`font-mono text-[10px] font-medium uppercase leading-tight tracking-[0.18em] sm:text-[11px] sm:tracking-[0.22em] ${
+          dark ? "text-cyan-300/80" : "text-slate-300"
+        }`}
+      >
+        {t.footer.tagline}
       </span>
     </a>
   );
