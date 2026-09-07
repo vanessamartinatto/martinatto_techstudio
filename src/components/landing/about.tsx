@@ -22,15 +22,13 @@ export function About() {
               {t.about.label}
             </p>
             <div className="flex items-center gap-4">
-              <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-600 via-indigo-500 to-cyan-500 shadow-lg shadow-violet-600/30">
-                <Image
-                  src="/images/vm-logo.png"
-                  alt=""
-                  width={52}
-                  height={52}
-                  className="h-[52px] w-[52px] [filter:drop-shadow(0_0_2px_rgba(255,255,255,0.65))]"
-                />
-              </span>
+              <Image
+                src="/images/vm-studio-logo.png"
+                alt="VM Studio"
+                width={64}
+                height={64}
+                className="h-16 w-16 shrink-0 rounded-2xl shadow-lg shadow-violet-600/25 ring-1 ring-white/10"
+              />
               <h2 className="font-display text-4xl font-bold tracking-tight text-white md:text-5xl">
                 {t.about.name}
               </h2>

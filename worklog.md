@@ -122,3 +122,16 @@ Work Log:
 Stage Summary:
 - About section now shows the business card mockup under the identity block; old vm-logo.png badge next to the name left unchanged (not requested)
 - New asset: public/images/vm-business-card.png
+
+---
+Task ID: 8
+Agent: Super Z (main)
+Task: Replace the old white diamond badge next to "Vanessa Martinatto" in Chi Sono with the new purple VM Studio logo
+
+Work Log:
+- Edited src/components/landing/about.tsx: removed gradient span + old /images/vm-logo.png white diamond; now renders /images/vm-studio-logo.png directly (h-16 w-16, rounded-2xl, ring-1 ring-white/10, violet shadow) matching header/footer style
+- bun run lint -> clean; agent-browser desktop 1440px screenshot verified; no page errors
+- Confirmed via grep: zero remaining references to vm-logo.png in src (old file left in public/images unused, kept for rollback)
+
+Stage Summary:
+- Branding now fully uniform across header, footer and Chi Sono: purple VM Studio diamond logo everywhere + "AI SOFTWARE & CONSULTING" tagline in header/footer
