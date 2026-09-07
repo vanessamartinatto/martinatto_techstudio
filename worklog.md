@@ -108,3 +108,17 @@ Work Log:
 Stage Summary:
 - Header/footer brand area now: [VM Studio image] "AI SOFTWARE & CONSULTING"; "VM Tech Studio" phrase removed from UI (still present only in metadata/title)
 - New asset: public/images/vm-studio-logo.png (old public/images/vm-logo.png still used by about.tsx, untouched)
+
+---
+Task ID: 7
+Agent: Super Z (main)
+Task: Add the client's attached business card image to the "Chi Sono" (About) section
+
+Work Log:
+- Copied upload "Untitled project (4).png" (1184x880 business card mockup: VM diamond + "Vanessa Martinatto — AI Orchestrator") to public/images/vm-business-card.png
+- Added a <figure> in src/components/landing/about.tsx left column below the gradient bar: rounded-2xl, ring-1 ring-white/10, violet shadow, subtle bottom gradient overlay, wrapped in Reveal (delay 0.15)
+- bun run lint -> clean; agent-browser verified desktop 1440px and mobile 390px rendering of #chi-sono; no page errors
+
+Stage Summary:
+- About section now shows the business card mockup under the identity block; old vm-logo.png badge next to the name left unchanged (not requested)
+- New asset: public/images/vm-business-card.png

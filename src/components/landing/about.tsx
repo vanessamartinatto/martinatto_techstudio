@@ -42,6 +42,21 @@ export function About() {
               aria-hidden
               className="mt-8 h-1.5 w-28 rounded-full bg-gradient-to-r from-violet-500 to-cyan-400 shadow-[0_0_12px_rgba(139,92,246,0.5)]"
             />
+            <Reveal delay={0.15}>
+              <figure className="relative mt-10 overflow-hidden rounded-2xl shadow-2xl shadow-violet-950/50 ring-1 ring-white/10">
+                <Image
+                  src="/images/vm-business-card.png"
+                  alt="Vanessa Martinatto — AI Orchestrator"
+                  width={1184}
+                  height={880}
+                  className="h-auto w-full object-cover"
+                />
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-t from-[#05070D]/40 via-transparent to-transparent"
+                />
+              </figure>
+            </Reveal>
           </Reveal>
 
           {/* Right: bio + points */}
