@@ -1,6 +1,43 @@
 # Worklog
 
 ---
+Task ID: 5
+Agent: Main agent (Super Z)
+Task: Substituir o badge "VM" textual pelo logo anexado (diamond VM Studio) em todo o site
+
+Work Log:
+- Analisada a imagem enviada (upload/Untitled Project (2).png, 1024px): logo branco sobre fundo branco, definido apenas por sombras suaves (99% dos pixels > 180 de luminância) — sem canal alpha utilizável
+- Testadas 3 abordagens de extração: (1) flood-fill do fundo → comeu o corpo do logo; (2) fechamento 21px + fill_holes → silhueta sólida deformava as facetas; (3) line-art (alpha = mapa de escuridão com gamma boost + dilatação) → fiel ao design original
+- Escolhida a abordagem line-art: wireframe branco do diamante, compatível com a estética neon/tech do site
+- Assets gerados em scripts/process-logo.py + scripts/bold-logo.py: public/images/vm-logo.png (562px, fundo transparente, traços engrossados) e src/app/icon.png (favicon 256px com tile gradiente violeta→ciano — auto-detectado pelo Next.js)
+- navbar.tsx (componente Logo, usado no header + footer): badge "VM" substituído por tile gradiente violet-600→indigo-500→cyan-500 com o diamante branco dentro (estilo app icon, legível a 40px)
+- about.tsx: avatar "VM" substituído pelo mesmo tile em 64px
+- Removido public/logo.svg (não referenciado)
+- Verificação: lint limpo, sem erros de console; screenshots desktop (navbar, about, footer) e mobile OK; /icon.png servido com 200
+
+Stage Summary:
+- Logo oficial (diamante VM Studio) substitui o badge textual "VM" em navbar, footer, seção Chi Sono e favicon
+- Tratamento: tile gradiente da marca + wireframe branco (consistente com a identidade Deep Space Tech)
+- Assets: public/images/vm-logo.png, src/app/icon.png; scripts de geração salvos para regeneração futura
+
+---
+Task ID: 4
+Agent: Main agent (Super Z)
+Task: Inviare le richieste del form direttamente via email (Gmail SMTP) + conferma automatica al visitatore
+
+Work Log:
+- Chiarito con l'utente via AskUserQuestion: Gmail SMTP, CONTACT_EMAIL placeholder in .env, conferma al visitatore in IT/EN/PT, notifica testo + Reply-To
+- Installato nodemailer@10 + @types/nodemailer
+- Creato src/lib/mailer.ts: transport SMTP da env (SMTP_HOST/SMTP_PORT/SMTP_USER/SMTP_PASS/CONTACT_EMAIL), isMailConfigured(), sendNotificationEmail() (testo pulito, Reply-To al cliente), sendConfirmationEmail() con template IT/EN/PT
+- Aggiornato /api/contact/route.ts: invio parallelo delle 2 email dopo il salvataggio DB; emailStatus ("sent"|"failed"|"not_configured"); errore email non fallisce la richiesta
+- .env: variabili SMTP con istruzioni passo-passo per la App Password di Google
+- Test: POST senza credenziali → 201 + "not_configured"; SMTP fake → errore catturato → "failed"; E2E browser con toast "Richiesta inviata"; record di test eliminati; lint pulito
+
+Stage Summary:
+- Form invia: (1) notifica a CONTACT_EMAIL con Reply-To, (2) conferma automatica al visitatore nella lingua del form
+- Attivazione: compilare SMTP_USER, SMTP_PASS, CONTACT_EMAIL nel .env e riavviare
+
+---
 Task ID: 3
 Agent: Main agent (Super Z)
 Task: Verificação pós-troca de paleta (Deep Space Tech) + polish final do hero
