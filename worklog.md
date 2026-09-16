@@ -225,3 +225,16 @@ Work Log:
 
 Stage Summary:
 - Header now shows the refined lighter-purple MARTINATTO tech studio wordmark; footer unchanged (text tagline)
+
+---
+Task ID: 18
+Agent: Super Z (main)
+Task: Header wordmark v3 - swap to attached logo8.png (even lighter purple)
+
+Work Log:
+- Inspected logo8.png: same 1057x168 transparent wordmark, purple tone lightened again
+- Overwrote public/images/vm-wordmark.png (zero code changes - same reference/aspect)
+- Verified: lint clean; desktop 1440px renders correctly; mobile 390px no overflow; zero page errors
+
+Stage Summary:
+- Header shows the third wordmark iteration (lightest purple); footer unchanged
