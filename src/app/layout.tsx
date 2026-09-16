@@ -19,11 +19,11 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "VM Tech Studio | MVP e Automazione IA in settimane",
+  title: "Martinatto Tech_Studio | MVP e Automazione IA in settimane",
   description:
     "Unisco project management IT, architettura dei sistemi e intelligenza artificiale per costruire MVP, web app e automazioni su misura per il tuo business. Online in settimane, non mesi.",
   keywords: [
-    "VM Tech Studio",
+    "Martinatto Tech_Studio",
     "MVP",
     "AI",
     "Automazione IA",
@@ -34,10 +34,10 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Vanessa Martinatto" }],
   openGraph: {
-    title: "VM Tech Studio | MVP e Automazione IA in settimane",
+    title: "Martinatto Tech_Studio | MVP e Automazione IA in settimane",
     description:
       "Trasformo la tua idea in un prodotto digitale funzionante e online in settimane, non mesi.",
-    siteName: "VM Tech Studio",
+    siteName: "Martinatto Tech_Studio",
     type: "website",
   },
 };

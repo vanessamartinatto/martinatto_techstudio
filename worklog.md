@@ -251,3 +251,17 @@ Work Log:
 
 Stage Summary:
 - Favicon is now the client's flat purple diamond with transparent background (no tile)
+
+---
+Task ID: 20
+Agent: Super Z (main)
+Task: Replace every "VM Tech Studio" occurrence with "Martinatto Tech_Studio"
+
+Work Log:
+- Grep across the project: occurrences existed only in src/app/layout.tsx metadata (title, keywords, openGraph title, siteName) and in internal files (language-context localStorage key "vm-tech-studio-lang", worklog history)
+- Replaced all 4 metadata occurrences in layout.tsx with "Martinatto Tech_Studio"
+- Kept the localStorage key unchanged (internal, never displayed; renaming would reset saved language preferences for returning visitors); worklog entries kept as historical record
+- Verified: rg src clean; lint clean; rendered <title> and og:site_name both show "Martinatto Tech_Studio | MVP e Automazione IA in settimane" / "Martinatto Tech_Studio"
+
+Stage Summary:
+- Site metadata rebranded to "Martinatto Tech_Studio"; no UI text contained "VM Tech Studio" (header/footer already use image/tagline)
