@@ -167,3 +167,20 @@ Work Log:
 Stage Summary:
 - New diamond logo now used consistently: header, footer, Chi Sono badge, 3D effect texture and favicon
 - Assets updated: public/images/vm-studio-logo.png (1024x1024), src/app/icon.png (256x256); generation script saved at scripts/replace_main_logo.py
+
+---
+Task ID: 14
+Agent: Super Z (main)
+Task: Final comprehensive QA pass after logo rebrand (user: "continue de onde parou")
+
+Work Log:
+- Asset audit: public/images contains vm-studio-logo.png (header/footer/about badge), vm-logo-3d.png (3D texture + fallback), vm-logo.png (0 refs, kept for rollback); zero references to business card or old assets in src
+- Desktop 1440px: all 5 anchor sections (#servizi #caso-studio #come-funziona #chi-sono #contatto) present, header logo present, h1 default IT
+- Languages: IT -> EN -> IT round-trip verified via h1 text (EN/PT/IT all render correctly)
+- Form E2E: filled Nome/Email/Descrizione + selected "Automazione & IA", submitted -> toast "Richiesta inviata" shown, form reset; DB record verified (correct fields + lang "it"), test record deleted afterwards
+- Mobile 390x844: hamburger menu opens with 4 links + lang switcher + CTA; no horizontal overflow (scrollWidth 390 == viewport)
+- Zero page errors, console clean (only HMR dev logs); bun run lint clean
+
+Stage Summary:
+- Site fully functional end-to-end after Task 13 rebrand: sections, i18n, form persistence, 3D effect, mobile UX all verified
+- No code changes needed; QA-only pass, test data cleaned up
