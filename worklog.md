@@ -152,3 +152,18 @@ Work Log:
 
 Stage Summary:
 - 3D effect now uses the client's high-res transparent diamond (1202x1222); layout bulletproof across DPRs; business card remains removed per earlier request
+
+---
+Task ID: 13
+Agent: Super Z (main)
+Task: Replace the main site logo with the client's newly attached diamond (user confirmed "si")
+
+Work Log:
+- Confirmed both new uploads (immagine_2026-09-16_153622356.png / _153648471.png) are the same new purple/cyan diamond (1202x1222 RGBA); the latter already served as 3D texture (Task 12)
+- scripts/replace_main_logo.py: padded the new diamond to a 1024x1024 square (content at 93%, LANCZOS, alpha preserved) and overwrote public/images/vm-studio-logo.png -> header, footer (shared navbar Logo component) and Chi Sono badge updated with zero code changes
+- Regenerated src/app/icon.png (256px favicon): new diamond at 82% on a dark radial tile (#1B1235 -> #05070D) matching site branding
+- Verified: bun run lint clean; agent-browser desktop 1440px (header, Chi Sono badge + 3D rotating diamond confirmed via pixel-diff of two timed screenshots, footer) and mobile 390x844 (header + Chi Sono) all render the new logo; zero page errors
+
+Stage Summary:
+- New diamond logo now used consistently: header, footer, Chi Sono badge, 3D effect texture and favicon
+- Assets updated: public/images/vm-studio-logo.png (1024x1024), src/app/icon.png (256x256); generation script saved at scripts/replace_main_logo.py
