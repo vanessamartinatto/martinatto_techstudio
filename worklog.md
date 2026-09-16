@@ -238,3 +238,16 @@ Work Log:
 
 Stage Summary:
 - Header shows the third wordmark iteration (lightest purple); footer unchanged
+
+---
+Task ID: 19
+Agent: Super Z (main)
+Task: Use the attached flat diamond (logo9.png, no background) as the favicon
+
+Work Log:
+- Inspected logo9.png: flat light-purple VM diamond, 1035x1054 RGBA, background already fully transparent (corners/edges alpha=0, 62% transparent pixels)
+- scripts/make_favicon.py: scaled to 94% of a 256x256 transparent canvas (LANCZOS, tips not clipped), overwrote src/app/icon.png - replaced the previous dark-radial-tile favicon per the "sem fundo" request
+- Verified: bun run lint clean; served /icon.png md5 == file md5 (760a3a36...); HTML head exposes <link rel="icon" sizes="256x256" type="image/png">; icon renders diamond centered with fully transparent corners
+
+Stage Summary:
+- Favicon is now the client's flat purple diamond with transparent background (no tile)
