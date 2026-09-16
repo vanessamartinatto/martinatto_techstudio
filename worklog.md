@@ -198,3 +198,17 @@ Work Log:
 Stage Summary:
 - 3D rotating diamond now lives in the hero under the badge (first thing visitors see); Chi Sono keeps only the static logo badge next to the name
 - No changes to logo3d.tsx (all DPR/visibility/reduced-motion safeguards preserved)
+
+---
+Task ID: 16
+Agent: Super Z (main)
+Task: Header - replace the "AI Software & Consulting" text with the attached wordmark image (logo5.png)
+
+Work Log:
+- Inspected upload logo5.png: "MARTINATTO tech studio" wordmark, purple + cyan, 1057x168 RGBA transparent, full-bleed; copied as-is to public/images/vm-wordmark.png
+- navbar.tsx Logo component: added wordmark prop; header (<Logo wordmark />) now renders the wordmark image (h-7 w-auto sm:h-8 => 176px mobile / 201px desktop, priority) in place of the tagline text; footer (<Logo dark />) keeps the "AI SOFTWARE & CONSULTING" text as before (user scoped the change to the header only)
+- Verified: bun run lint clean; desktop 1440px wordmark renders 201x32 crisp; mobile 390px 176x28 with zero horizontal overflow; footer unchanged; zero page errors
+
+Stage Summary:
+- Header brand area now: [diamond logo] + [MARTINATTO tech studio wordmark image]; footer keeps text tagline
+- New asset: public/images/vm-wordmark.png

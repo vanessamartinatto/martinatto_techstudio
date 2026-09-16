@@ -6,7 +6,13 @@ import { Menu, X } from "lucide-react";
 import { useLanguage } from "./language-context";
 import type { Lang } from "@/lib/i18n";
 
-export function Logo({ dark = false }: { dark?: boolean }) {
+export function Logo({
+  dark = false,
+  wordmark = false,
+}: {
+  dark?: boolean;
+  wordmark?: boolean;
+}) {
   const { t } = useLanguage();
   return (
     <a href="#" className="flex items-center gap-3" aria-label="VM Studio">
@@ -18,13 +24,24 @@ export function Logo({ dark = false }: { dark?: boolean }) {
         priority
         className="h-12 w-12 shrink-0 rounded-xl shadow-md shadow-violet-600/25 ring-1 ring-white/10"
       />
-      <span
-        className={`font-mono text-[10px] font-medium uppercase leading-tight tracking-[0.18em] sm:text-[11px] sm:tracking-[0.22em] ${
-          dark ? "text-cyan-300/80" : "text-slate-300"
-        }`}
-      >
-        {t.footer.tagline}
-      </span>
+      {wordmark ? (
+        <Image
+          src="/images/vm-wordmark.png"
+          alt="Martinatto Tech Studio"
+          width={1057}
+          height={168}
+          priority
+          className="h-7 w-auto sm:h-8"
+        />
+      ) : (
+        <span
+          className={`font-mono text-[10px] font-medium uppercase leading-tight tracking-[0.18em] sm:text-[11px] sm:tracking-[0.22em] ${
+            dark ? "text-cyan-300/80" : "text-slate-300"
+          }`}
+        >
+          {t.footer.tagline}
+        </span>
+      )}
     </a>
   );
 }
@@ -71,7 +88,7 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/[0.06] bg-[#05070D]/75 backdrop-blur-xl">
       <div className="mx-auto flex h-[72px] max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
-        <Logo />
+        <Logo wordmark />
 
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Main">
           {links.map((link) => (
