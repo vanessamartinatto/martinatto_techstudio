@@ -3,6 +3,7 @@
 import { ArrowRight, Rocket } from "lucide-react";
 import { useLanguage } from "./language-context";
 import { Reveal } from "./shared";
+import { Logo3D } from "./logo3d";
 
 export function Hero() {
   const { t } = useLanguage();
@@ -20,12 +21,22 @@ export function Hero() {
         <div className="absolute left-1/2 top-24 h-64 w-[36rem] -translate-x-1/2 rounded-full bg-indigo-600/10 blur-3xl" />
       </div>
 
-      <div className="relative mx-auto max-w-5xl px-4 pb-20 pt-16 text-center sm:px-6 md:pb-28 md:pt-24">
+      <div className="relative mx-auto max-w-5xl px-4 pb-20 pt-12 text-center sm:px-6 md:pb-28 md:pt-16">
         <Reveal>
           <span className="inline-flex items-center gap-2 rounded-full border border-violet-400/25 bg-violet-500/10 px-5 py-2 font-mono text-[11px] tracking-widest text-violet-200 shadow-[0_0_24px_rgba(139,92,246,0.15)] sm:text-xs">
             <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-violet-400 to-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
             {t.hero.badge}
           </span>
+        </Reveal>
+
+        <Reveal delay={0.06}>
+          <div className="relative mx-auto mt-5 w-40 sm:w-48 md:w-56">
+            <div
+              aria-hidden
+              className="absolute inset-0 scale-75 rounded-full bg-violet-600/20 blur-3xl"
+            />
+            <Logo3D className="relative aspect-square w-full" />
+          </div>
         </Reveal>
 
         <Reveal delay={0.08}>

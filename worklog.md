@@ -184,3 +184,17 @@ Work Log:
 Stage Summary:
 - Site fully functional end-to-end after Task 13 rebrand: sections, i18n, form persistence, 3D effect, mobile UX all verified
 - No code changes needed; QA-only pass, test data cleaned up
+
+---
+Task ID: 15
+Agent: Super Z (main)
+Task: Move the 3D rotating logo from Chi Sono to the hero, right below the "[ AI-Assisted Development & Tech PM ]" badge
+
+Work Log:
+- hero.tsx: added Logo3D import; inserted a Reveal block between the badge and the h1 (container relative mx-auto mt-5 w-40 sm:w-48 md:w-56 with violet glow blob bg-violet-600/20); reduced hero top padding pt-16 md:pt-24 -> pt-12 md:pt-16 to keep the CTA near the fold
+- about.tsx: removed the Logo3D Reveal block + import; left column now ends at the gradient bar (layout stays balanced, verified visually)
+- Verified: bun run lint clean; desktop 1440x900 - canvas CSS 224x224 == parent 224x224 (buffer 224x224 @DPR1, no DPR feedback), rotation confirmed via pixel-diff of two timed screenshots; Chi Sono section renders correctly without the 3D; mobile 390x844 hero shows the rotating diamond below the badge, no overflow; zero page errors
+
+Stage Summary:
+- 3D rotating diamond now lives in the hero under the badge (first thing visitors see); Chi Sono keeps only the static logo badge next to the name
+- No changes to logo3d.tsx (all DPR/visibility/reduced-motion safeguards preserved)

@@ -4,7 +4,6 @@ import Image from "next/image";
 import { Check } from "lucide-react";
 import { useLanguage } from "./language-context";
 import { Reveal } from "./shared";
-import { Logo3D } from "./logo3d";
 
 export function About() {
   const { t } = useLanguage();
@@ -41,15 +40,6 @@ export function About() {
               aria-hidden
               className="mt-8 h-1.5 w-28 rounded-full bg-gradient-to-r from-violet-500 to-cyan-400 shadow-[0_0_12px_rgba(139,92,246,0.5)]"
             />
-            <Reveal delay={0.15}>
-              <div className="relative mx-auto mt-12 w-full max-w-[320px] md:max-w-[360px]">
-                <div
-                  aria-hidden
-                  className="absolute inset-0 scale-75 rounded-full bg-violet-600/15 blur-3xl"
-                />
-                <Logo3D className="relative aspect-square w-full" />
-              </div>
-            </Reveal>
           </Reveal>
 
           {/* Right: bio + points */}
