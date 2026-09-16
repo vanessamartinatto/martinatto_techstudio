@@ -212,3 +212,16 @@ Work Log:
 Stage Summary:
 - Header brand area now: [diamond logo] + [MARTINATTO tech studio wordmark image]; footer keeps text tagline
 - New asset: public/images/vm-wordmark.png
+
+---
+Task ID: 17
+Agent: Super Z (main)
+Task: Header wordmark v2 - user disliked logo5 version, swap to attached logo7.png
+
+Work Log:
+- Pixel-diffed logo5 vs logo7: same 1057x168 canvas; differences concentrated in the "MARTINATTO" rows (1-82) - new version has a lighter, softer purple (avg opaque RGB 117/88/232 vs 85/33/222) plus subtle letterform tweaks
+- Overwrote public/images/vm-wordmark.png with logo7.png (no code changes needed - same reference, same aspect)
+- Verified: lint clean; desktop 1440px wordmark 201x32 crisp; mobile 390px no overflow; zero page errors
+
+Stage Summary:
+- Header now shows the refined lighter-purple MARTINATTO tech studio wordmark; footer unchanged (text tagline)
