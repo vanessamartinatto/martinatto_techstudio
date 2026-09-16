@@ -135,3 +135,20 @@ Work Log:
 
 Stage Summary:
 - Branding now fully uniform across header, footer and Chi Sono: purple VM Studio diamond logo everywhere + "AI SOFTWARE & CONSULTING" tagline in header/footer
+
+---
+Task ID: 12
+Agent: Super Z (main)
+Task: Swap the 3D logo texture for the client's newly attached transparent image (immagine_2026-09-16_153648471.png)
+
+Work Log:
+- DISCOVERED: environment had rolled back source to post-Task-8 state (logo3d.tsx gone, three dep gone, business-card figure back in about.tsx; worklog entries 9-11 lost). public/images copies persisted.
+- Re-applied Task 9: removed business-card figure from about.tsx, deleted public/images/vm-business-card.png
+- Reinstalled three@0.186.0 + @types/three
+- Copied new upload (1202x1222 RGBA, clean transparent diamond) to public/images/vm-logo-3d.png
+- Recreated src/components/landing/logo3d.tsx with all prior fixes (setSize updateStyle default, canvas display:block, WebGL try/catch + static fallback) plus: texture-driven aspect (logoMesh.scale.x = img.width/img.height via texture.onload) and canvas position:absolute inset-0 (canvas can never influence container height on any DPR or live resize)
+- Re-added Logo3D to about.tsx left column with violet glow blob
+- Verified: lint clean; desktop DPR1 canvas 360x360 == parent; iPhone 14 emulation DPR3 fresh load canvas 320x320 == parent; two timed screenshots confirm rotation; zero page errors
+
+Stage Summary:
+- 3D effect now uses the client's high-res transparent diamond (1202x1222); layout bulletproof across DPRs; business card remains removed per earlier request
