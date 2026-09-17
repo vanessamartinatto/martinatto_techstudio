@@ -1,7 +1,7 @@
 "use client";
 
+import Image from "next/image";
 import { useLanguage } from "./language-context";
-import { Logo } from "./navbar";
 
 export function Footer() {
   const { t } = useLanguage();
@@ -19,7 +19,22 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
         <div className="flex flex-col justify-between gap-10 md:flex-row md:items-start">
           <div>
-            <Logo dark />
+            <a
+              href="#"
+              className="inline-flex flex-col items-start gap-4"
+              aria-label="Martinatto Tech_Studio"
+            >
+              <Image
+                src="/images/martinatto-footer-logo.png"
+                alt="Martinatto Tech_Studio"
+                width={518}
+                height={640}
+                className="h-36 w-auto sm:h-44"
+              />
+              <span className="font-mono text-[10px] font-medium uppercase leading-tight tracking-[0.18em] text-cyan-300/80 sm:text-[11px] sm:tracking-[0.22em]">
+                {t.footer.tagline}
+              </span>
+            </a>
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-slate-500">
               {t.footer.vat}
             </p>

@@ -265,3 +265,20 @@ Work Log:
 
 Stage Summary:
 - Site metadata rebranded to "Martinatto Tech_Studio"; no UI text contained "VM Tech Studio" (header/footer already use image/tagline)
+
+---
+Task ID: 21
+Agent: Super Z (main)
+Task: Footer - replace the current logo with attached logo10.png, positioned above "AI Software & Consulting"
+
+Work Log:
+- Inspected upload/logo10.png: full stacked lockup (purple diamond + cyan facets + "MARTINATTO tech studio" wordmark), 2660x3287 RGBA, background fully transparent (corners alpha=0), content full-bleed
+- scripts/footer_logo.py: LANCZOS-resized to 518x640 (covers sm:h-44 display at DPR 3+), optimized PNG 220KB (from 2MB) -> public/images/martinatto-footer-logo.png
+- footer.tsx: replaced <Logo dark /> (diamond beside tagline) with a vertical brand block inside <a href="#" aria-label="Martinatto Tech_Studio">: new lockup image (h-36 w-auto sm:h-44) stacked above the "AI Software & Consulting" tagline (same cyan mono styling as before, gap-4); removed the now-unused Logo import
+- Bonus fix (Task 20 follow-up): replaced the 8 leftover "VM Tech Studio" strings in src/lib/mailer.ts (email subjects, From names, signature blocks) with "Martinatto Tech_Studio"; vmtechstudio.it domain URLs untouched
+- Verified: bun run lint clean; desktop 1440px - image loads (natural 518x640, rendered 142x176), tagline directly below with 16px gap, bottom bar unchanged; mobile 390px - 117x144, scrollWidth 390 (no horizontal overflow); zero page errors, console clean (HMR logs only)
+
+Stage Summary:
+- Footer brand area is now: [stacked Martinatto Tech Studio lockup image] + "AI SOFTWARE & CONSULTING" below it
+- Email templates fully rebranded to "Martinatto Tech_Studio"
+- New asset: public/images/martinatto-footer-logo.png (518x640 transparent)
