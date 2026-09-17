@@ -326,3 +326,21 @@ Work Log:
 Stage Summary:
 - Diamond color unified site-wide to the vivid logo11 purple: header, Chi Sono badge, hero 3D texture (+fallback) and footer all consistent now
 - Scripts saved: scripts/unify_diamond.py (regeneration recipe documented)
+
+---
+Task ID: 25
+Agent: Super Z (main)
+Task: The MARTINATTO wordmark still looks different between header and footer - diagnose and fix
+
+Work Log:
+- Source-file measurement: header wordmark (logo8) vs footer wordmark (logo11) tones are IDENTICAL (MARTINATTO 164/138/249 vs 163/137/249; tech studio cyan 33/243/254 vs 32/244/254) - the files were never the problem
+- Rendered-screen measurement found the real issue: footer's MARTINATTO line renders ~9px tall (inside the 144px stacked lockup) vs ~17px in the header; thin strokes lose antialiasing coverage on the dark background -> rendered footer (93,63,187) vs header (137,115,208)
+- Fix attempts + cache discovery: channel-gain-only boosting appeared to have no effect - investigation revealed the dev image optimizer serves a stale in-memory cached variant per URL (served v1 bytes for every later request; ETag never changed). Cache-busted by renaming the asset (query string ?v=3 is rejected by Next 16 without images.localPatterns config - caused a runtime error overlay, reverted)
+- Final solution (scripts/footer_lockup_v3.py): optical-size compensation - dilate the wordmark alpha at the logo's NATIVE resolution (MaxFilter 15 on 2660px-wide artwork, strokes 20->35px) before the LANCZOS downscale, so strokes survive the 22x reduction with high coverage; then mild channel lift (R .96 / G .91 / B 1.05) on text rows; output 518x640 as public/images/martinatto-footer-lockup2.png
+- Result: rendered footer MARTINATTO (138,116,199) vs header (137,115,208) - delta (1,1,-9), effectively identical; stroke pixel count also proportionally matches (867px at half size vs header 1849px)
+- Verified: lint clean; mobile 390px no overflow, text legible; footer.tsx src updated to the new filename; zero page errors, console clean
+
+Stage Summary:
+- Header and footer MARTINATTO wordmarks now render the same tone (measured delta 1/255 on R/G)
+- Root cause documented: not source colors but optical downscale coverage + Next dev optimizer stale cache (future asset swaps must bump the filename)
+- Canonical script: scripts/footer_lockup_v3.py; asset: public/images/martinatto-footer-lockup2.png

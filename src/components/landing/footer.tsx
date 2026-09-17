@@ -21,7 +21,7 @@ export function Footer() {
           <div>
             <a href="#" aria-label="Martinatto Tech_Studio">
               <Image
-                src="/images/martinatto-footer-logo.png"
+                src="/images/martinatto-footer-lockup2.png"
                 alt="Martinatto Tech_Studio"
                 width={518}
                 height={640}
