@@ -311,3 +311,18 @@ Work Log:
 
 Stage Summary:
 - Footer VAT placeholder replaced with the real number: "P.IVA: 14705270966" in all 3 languages
+
+---
+Task ID: 24
+Agent: Super Z (main)
+Task: Diagnose why the header logo color differs from the footer logo; unify to the vivid purple (user choice)
+
+Work Log:
+- Diagnosis: header diamond (vm-studio-logo.png, from immagine_2026-09-16_153622356.png) averages RGB 96/94/161 (muted, desaturated) while the footer diamond inside logo11.png averages RGB 90/65/213 (vivid) - two client source files with different color grading; silhouette IoU between the two diamonds is 0.993 (same design); wordmarks already consistent (155/146/250 vs 157/144/250); hero 3D texture used the same muted image
+- User picked "Roxo vivo (do footer)" via AskUserQuestion
+- scripts/unify_diamond.py: extracted the diamond region from logo11 (rows 0-2692, tight alpha crop 2649x2692) and regenerated both assets - vm-studio-logo.png (1024x1024, content 93%, Task 13 recipe) and vm-logo-3d.png (1202x1222 full-bleed, old texture recipe); both now average RGB 90/65/212 == footer
+- Verified: browser reload - header image loaded, hero canvas 224x224 rotating (14.1% pixel diff between timed frames), Chi Sono badge vivid, footer unchanged; zero page errors, console clean
+
+Stage Summary:
+- Diamond color unified site-wide to the vivid logo11 purple: header, Chi Sono badge, hero 3D texture (+fallback) and footer all consistent now
+- Scripts saved: scripts/unify_diamond.py (regeneration recipe documented)
