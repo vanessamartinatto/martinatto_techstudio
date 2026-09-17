@@ -344,3 +344,20 @@ Stage Summary:
 - Header and footer MARTINATTO wordmarks now render the same tone (measured delta 1/255 on R/G)
 - Root cause documented: not source colors but optical downscale coverage + Next dev optimizer stale cache (future asset swaps must bump the filename)
 - Canonical script: scripts/footer_lockup_v3.py; asset: public/images/martinatto-footer-lockup2.png
+
+---
+Task ID: 26
+Agent: Super Z (main)
+Task: Undo the Task 25 wordmark treatment (user: "Nao gostei dos tracos brancos e grossos. Desfaca")
+
+Work Log:
+- User rejected the Task 25 optical-compensation lockup (MaxFilter 15 dilation -> strokes 20->35px + channel lift): MARTINATTO letters in the footer looked whitish and too bold
+- Regenerated the original pristine asset via scripts/footer_logo.py (logo11 pure LANCZOS downscale, no dilation, no gains): public/images/martinatto-footer-logo.png 518x640, md5 6bbeac2ac61eb6562d06450c4352b674 == byte-identical to the Task 22 version
+- footer.tsx: src reverted martinatto-footer-lockup2.png -> martinatto-footer-logo.png (width/height props and h-28 sm:h-36 sizing unchanged)
+- Deleted public/images/martinatto-footer-lockup2.png
+- Verified: bun run lint clean; footer image loads 518x640 natural / 117x144 rendered at the original URL; rendered MARTINATTO tone back to (110,68,215) with 465 stroke px (vs rejected v3: 138,116,199 / 867 px) - thin strokes and original purple restored; zoomed screenshot visually confirmed; zero page errors
+
+Stage Summary:
+- Footer wordmark fully reverted to the pre-Task-25 look (original thin strokes, original logo11 purple); header untouched
+- Consequence: the header/footer MARTINATTO rendered-tone difference from Task 25's diagnosis is back by user choice - do NOT re-apply dilation/channel-lift unless requested
+- Canonical asset: public/images/martinatto-footer-logo.png (footer_logo.py recipe); lockup2 approach abandoned
