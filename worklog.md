@@ -298,3 +298,16 @@ Work Log:
 Stage Summary:
 - Footer brand block is now just the smaller stacked Martinatto Tech Studio lockup (latest lighter-purple wordmark) + Partita IVA text
 - Same asset path reused (public/images/martinatto-footer-logo.png) - zero reference changes needed in code besides size/tagline
+
+---
+Task ID: 23
+Agent: Super Z (main)
+Task: Update the Partita IVA in the footer to "P.IVA: 14705270966"
+
+Work Log:
+- Grep located 3 footer.vat strings in src/lib/i18n.ts: IT "Partita IVA: IT00000000000", EN "VAT ID: IT00000000000", PT "Partita IVA: IT00000000000" (placeholders)
+- Replaced all 3 with the user's exact requested format "P.IVA: 14705270966" (applied literally per user instruction, consistent across languages)
+- Verified: bun run lint clean; browser check - IT default shows "P.IVA: 14705270966", EN and PT switchers show the same string, screenshot confirms rendering below the footer logo; zero page errors
+
+Stage Summary:
+- Footer VAT placeholder replaced with the real number: "P.IVA: 14705270966" in all 3 languages

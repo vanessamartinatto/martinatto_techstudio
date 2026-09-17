@@ -153,7 +153,7 @@ const it = {
   },
   footer: {
     tagline: "AI Software & Consulting",
-    vat: "Partita IVA: IT00000000000",
+    vat: "P.IVA: 14705270966",
     rights: "© 2026 Vanessa Martinatto. Tutti i diritti riservati.",
   },
 };
@@ -313,7 +313,7 @@ const en: Dict = {
   },
   footer: {
     tagline: "AI Software & Consulting",
-    vat: "VAT ID: IT00000000000",
+    vat: "P.IVA: 14705270966",
     rights: "© 2026 Vanessa Martinatto. All rights reserved.",
   },
 };
@@ -471,7 +471,7 @@ const pt: Dict = {
   },
   footer: {
     tagline: "AI Software & Consulting",
-    vat: "Partita IVA: IT00000000000",
+    vat: "P.IVA: 14705270966",
     rights: "© 2026 Vanessa Martinatto. Todos os direitos reservados.",
   },
 };
