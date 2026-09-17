@@ -282,3 +282,19 @@ Stage Summary:
 - Footer brand area is now: [stacked Martinatto Tech Studio lockup image] + "AI SOFTWARE & CONSULTING" below it
 - Email templates fully rebranded to "Martinatto Tech_Studio"
 - New asset: public/images/martinatto-footer-logo.png (518x640 transparent)
+
+---
+Task ID: 22
+Agent: Super Z (main)
+Task: Footer - swap to new logo11.png, make it a bit smaller, remove the "AI Software & Consulting" tagline
+
+Work Log:
+- Pixel-diffed logo11 vs logo10 (same 2660x3287 canvas): only the "MARTINATTO" wordmark rows changed (y 2868-3071) - purple lightened again (avg opaque RGB 164/138/249 vs 122/74/235), diamond untouched
+- Re-ran scripts/footer_logo.py (SRC -> logo11.png): regenerated public/images/martinatto-footer-logo.png (518x640 transparent, 220KB, new md5 6bbeac2a...)
+- footer.tsx: logo height reduced h-36 sm:h-44 -> h-28 sm:h-36 (144/176px -> 112/144px CSS); removed the "AI Software & Consulting" tagline span below the logo (brand block anchor now contains only the image; aria-label/alt kept); VAT paragraph spacing unchanged
+- Note: the gradient "AI Software & Consulting" in the bottom bar was kept (user's request referred to the tagline under the logo from Task 21)
+- Verified: bun run lint clean; desktop 1440px - image 117x144 loaded, anchor text empty (tagline gone); mobile 390px - 91x112, no horizontal overflow; console clean
+
+Stage Summary:
+- Footer brand block is now just the smaller stacked Martinatto Tech Studio lockup (latest lighter-purple wordmark) + Partita IVA text
+- Same asset path reused (public/images/martinatto-footer-logo.png) - zero reference changes needed in code besides size/tagline

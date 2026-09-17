@@ -8,7 +8,7 @@ transparent background. Output: resized transparent PNG for footer display
 import hashlib
 from PIL import Image
 
-SRC = "/home/z/my-project/upload/logo10.png"
+SRC = "/home/z/my-project/upload/logo11.png"
 DST = "/home/z/my-project/public/images/martinatto-footer-logo.png"
 
 img = Image.open(SRC)
