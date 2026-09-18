@@ -412,3 +412,17 @@ Work Log:
 Stage Summary:
 - Form -> email pipeline fully restored; recipient is info@martinatto.it; sender will be info@martinatto.it via IONOS SMTP (professional From, no spoofing)
 - ACTIVATION PENDING: waiting for the IONOS mailbox password from the user -> fill SMTP_PASS in .env, restart dev server, then POST test must return emailStatus:"sent" (notification arrives at info@martinatto.it + auto-confirmation to the visitor)
+
+---
+Task ID: 30
+Agent: Super Z (main)
+Task: User prefers NOT to share the SMTP password - provide self-service activation
+
+Work Log:
+- Verified .gitignore line 34 covers .env* (password in .env/.env.local is never committed)
+- Created .env.example: documented template with the full IONOS SMTP block (CONTACT_EMAIL / SMTP_HOST=smtp.ionos.it / SMTP_PORT=465 / SMTP_USER=info@martinatto.it / SMTP_PASS) + activation steps and emailStatus troubleshooting
+- Sandbox .env left as-is (SMTP_PASS commented); no code changes
+
+Stage Summary:
+- User activates locally by filling SMTP_PASS (in .env or .env.local) and restarting the dev server; verification = POST /api/contact returns emailStatus:"sent" + notification lands in info@martinatto.it
+- .env.example serves as the canonical reference for local setup
