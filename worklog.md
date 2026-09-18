@@ -426,3 +426,16 @@ Work Log:
 Stage Summary:
 - User activates locally by filling SMTP_PASS (in .env or .env.local) and restarting the dev server; verification = POST /api/contact returns emailStatus:"sent" + notification lands in info@martinatto.it
 - .env.example serves as the canonical reference for local setup
+
+---
+Task ID: 31
+Agent: Super Z (main)
+Task: User could not find the .env file - make activation foolproof
+
+Work Log:
+- Confirmed .env (405 bytes) and .env.example exist at project root; explanation: dotfiles are hidden by default in most file browsers
+- Edited .env: uncommented SMTP_PASS= (now active but empty -> isMailConfigured() still false, form keeps working with emailStatus "not_configured"); user only needs to paste the password after the = and restart
+- No code changes; lint not needed (config-only)
+
+Stage Summary:
+- Activation is now a single edit: open .env, paste password after SMTP_PASS=, save, restart dev server; verify via emailStatus:"sent"
