@@ -57,3 +57,6 @@ server.log
 
 # client source materials (internal PDFs/logos, not needed in production)
 /upload/
+
+# internal agent worklog (not part of the product)
+/worklog.md
