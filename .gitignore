@@ -60,3 +60,6 @@ server.log
 
 # internal agent worklog (not part of the product)
 /worklog.md
+
+# exception: template IS meant to be versioned (no real values)
+!.env.example
