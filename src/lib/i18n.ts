@@ -155,6 +155,10 @@ const it = {
     tagline: "AI Software & Consulting",
     vat: "P.IVA: 14705270966",
     rights: "© 2026 Vanessa Martinatto. Tutti i diritti riservati.",
+    contactTitle: "Contatti",
+    phoneBrazil: "Telefono Brasile",
+    phoneItaly: "Telefono Italia e WhatsApp",
+    email: "E-mail",
   },
 };
 
@@ -315,6 +319,10 @@ const en: Dict = {
     tagline: "AI Software & Consulting",
     vat: "P.IVA: 14705270966",
     rights: "© 2026 Vanessa Martinatto. All rights reserved.",
+    contactTitle: "Contact",
+    phoneBrazil: "Brazil Phone",
+    phoneItaly: "Italy Phone & WhatsApp",
+    email: "Email",
   },
 };
 
@@ -473,6 +481,10 @@ const pt: Dict = {
     tagline: "AI Software & Consulting",
     vat: "P.IVA: 14705270966",
     rights: "© 2026 Vanessa Martinatto. Todos os direitos reservados.",
+    contactTitle: "Contato",
+    phoneBrazil: "Telefone Brasil",
+    phoneItaly: "Telefone Itália e WhatsApp",
+    email: "E-mail",
   },
 };
 

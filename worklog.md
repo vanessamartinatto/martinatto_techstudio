@@ -361,3 +361,24 @@ Stage Summary:
 - Footer wordmark fully reverted to the pre-Task-25 look (original thin strokes, original logo11 purple); header untouched
 - Consequence: the header/footer MARTINATTO rendered-tone difference from Task 25's diagnosis is back by user choice - do NOT re-apply dilation/channel-lift unless requested
 - Canonical asset: public/images/martinatto-footer-logo.png (footer_logo.py recipe); lockup2 approach abandoned
+
+---
+Task ID: 27
+Agent: frontend-styling-expert
+Task: Footer - add trilingual contact info block (Brazil phone, Italy phone + WhatsApp, email) with icons, keeping logo/VAT untouched
+
+Work Log:
+- i18n.ts: added 4 keys to all three footer blocks (it ~L154, en ~L318, pt ~L476) - contactTitle (Contatti/Contact/Contato), phoneBrazil (Telefono Brasile/Brazil Phone/Telefone Brasil), phoneItaly (Telefono Italia e WhatsApp/Italy Phone & WhatsApp/Telefone Itália e WhatsApp), email (E-mail/Email/E-mail); `Dict = typeof it` enforces completeness
+- footer.tsx restructured (logo + VAT + bottom bar byte-identical markup): top area now flex-col gap-12 lg:flex-row lg:justify-between lg:gap-16 with 3 columns - brand (logo+P.IVA) | Footer nav | new contacts block (max-w-sm)
+- Contacts block: violet mono overline "// CONTATTI" (matches SectionTitle overline style) + 3 rows; each row = anchor (min-h-[44px], rounded-xl, hover:bg-white/[0.03]) with icon in h-9 w-9 rounded-xl ring-1 tinted box (violet for phones, cyan for mail - matches services.tsx alternating tints) + 11px uppercase slate-500 label + slate-300 value with group-hover:text-cyan-300
+- Italy row is one row: tel anchor flex-1 + standalone 40x40 round cyan MessageCircle button (wa.me link, target _blank, rel noopener noreferrer, aria-label "WhatsApp +39 327237 1259") - elegant single row per client's "may be one row with a small WhatsApp icon"
+- Numbers/email as language-independent constants: display strings exactly "+55 (11) 941466406", "+39 327237 1259", "info@martinatto.it"; hrefs tel:+5511941466406, tel:+393272371259, mailto:info@martinatto.it
+- Icons from lucide-react (already installed): Phone, Phone, Mail, MessageCircle; no new deps, no global CSS
+- Verified: bun run lint clean; tsc --noEmit - zero errors in footer.tsx/i18n.ts (pre-existing errors only in unrelated scripts/skills/mailer files)
+- Browser (agent-browser): desktop 1440x900 - hrefs eval exact match (all 4), WhatsApp target=_blank rel=noopener noreferrer, 4 svg icons render, logo unchanged (same asset, 144px), columns at x=168/584/976 balanced, zero page errors; mobile 390x844 - scrollWidth 390 (no overflow), all tap targets >=40px (rows 49px, WhatsApp btn 40px), clean stack; language switcher EN/PT/IT all translate correctly and back to IT; VLM screenshot review confirms no overlap/clipping/misalignment on both viewports
+- Screenshots saved: scripts/footer_contacts_desktop.png, scripts/footer_contacts_mobile.png
+
+Stage Summary:
+- Footer top area is now: [logo + P.IVA] | [nav links] | [// CONTATTI block: Telefono Brasile +55 (11) 941466406 (tel), Telefono Italia e WhatsApp +39 327237 1259 (tel + round cyan WhatsApp button -> wa.me, new tab), E-mail info@martinatto.it (mailto)]
+- Logo image, VAT paragraph, nav, and bottom bar visually untouched; trilingual labels added via i18n
+- Note for future agents: page uses scroll-behavior smooth - use scrollTo({behavior:'instant'}) before screenshots or they capture mid-scroll
