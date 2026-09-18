@@ -439,3 +439,19 @@ Work Log:
 
 Stage Summary:
 - Activation is now a single edit: open .env, paste password after SMTP_PASS=, save, restart dev server; verify via emailStatus:"sent"
+
+---
+Task ID: 32
+Agent: Super Z (main)
+Task: Prepare the project for Render deployment + validated production build
+
+Work Log:
+- Inspected deploy-relevant state: next.config.ts output=standalone; package.json build copies static+public into .next/standalone; start uses bun (sandbox-specific); prisma has NO migrations (db push strategy); prisma CLI lives in dependencies (available in prod); .gitignore already covers .env*
+- .gitignore: added /db/ (SQLite with personal form data - never commit) and /upload/ (client internal PDFs/logo sources)
+- Created render.yaml blueprint: web service runtime node, plan starter, region frankfurt, build "npm ci --include=dev && npx prisma generate && npm run build", start "npx prisma db push --skip-generate && node .next/standalone/server.js", disk 1GB mounted /var/data, DATABASE_URL=file:/var/data/custom.db, SMTP/CONTACT env vars with SMTP_PASS sync:false (secret set in dashboard, never in git)
+- VALIDATED locally end-to-end: bun run build -> clean (Next 16.1.3, 6 pages); simulated Render boot (prisma db push 11ms + node .next/standalone/server.js on :3100) -> GET / = 200, POST /api/contact = 201 + emailStatus not_configured + row persisted in the fresh SQLite file; cleaned test db/log, killed test server
+- Dev server on :3000 still healthy (200) after the production build
+
+Stage Summary:
+- Project is Render-ready: render.yaml blueprint at repo root (New -> Blueprint -> pick repo), gitignore protects personal data, exact commands proven working
+- Remaining user steps: push to GitLab, Render -> New -> Blueprint, fill SMTP_PASS in Environment, (optional) custom domain CNAME
