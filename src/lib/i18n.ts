@@ -156,8 +156,8 @@ const it = {
     vat: "P.IVA: 14705270966",
     rights: "© 2026 Vanessa Martinatto. Tutti i diritti riservati.",
     contactTitle: "Contatti",
-    phoneBrazil: "Telefono Brasile",
-    phoneItaly: "Telefono Italia e WhatsApp",
+    phoneBrazil: "Telefono Brasile e WhatsApp",
+    phoneItaly: "Telefono Italia",
     email: "E-mail",
   },
 };
@@ -320,8 +320,8 @@ const en: Dict = {
     vat: "P.IVA: 14705270966",
     rights: "© 2026 Vanessa Martinatto. All rights reserved.",
     contactTitle: "Contact",
-    phoneBrazil: "Brazil Phone",
-    phoneItaly: "Italy Phone & WhatsApp",
+    phoneBrazil: "Brazil Phone & WhatsApp",
+    phoneItaly: "Italy Phone",
     email: "Email",
   },
 };
@@ -482,8 +482,8 @@ const pt: Dict = {
     vat: "P.IVA: 14705270966",
     rights: "© 2026 Vanessa Martinatto. Todos os direitos reservados.",
     contactTitle: "Contato",
-    phoneBrazil: "Telefone Brasil",
-    phoneItaly: "Telefone Itália e WhatsApp",
+    phoneBrazil: "Telefone Brasil e WhatsApp",
+    phoneItaly: "Telefone Itália",
     email: "E-mail",
   },
 };

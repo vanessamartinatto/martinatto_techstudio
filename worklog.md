@@ -382,3 +382,17 @@ Stage Summary:
 - Footer top area is now: [logo + P.IVA] | [nav links] | [// CONTATTI block: Telefono Brasile +55 (11) 941466406 (tel), Telefono Italia e WhatsApp +39 327237 1259 (tel + round cyan WhatsApp button -> wa.me, new tab), E-mail info@martinatto.it (mailto)]
 - Logo image, VAT paragraph, nav, and bottom bar visually untouched; trilingual labels added via i18n
 - Note for future agents: page uses scroll-behavior smooth - use scrollTo({behavior:'instant'}) before screenshots or they capture mid-scroll
+
+---
+Task ID: 28
+Agent: Super Z (main)
+Task: WhatsApp belongs to the Brazil number, not Italy (user correction)
+
+Work Log:
+- footer.tsx: moved the round cyan WhatsApp button (MessageCircle) from the Italy row to the Brazil row (same structure: tel anchor flex-1 + 40px WA button); wa.me href updated 393272371259 -> 5511941466406; aria-label now "WhatsApp +55 (11) 941466406"; Italy row reverted to a plain tel anchor
+- i18n.ts: relabeled in all 3 languages - phoneBrazil: "Telefono Brasile e WhatsApp" / "Brazil Phone & WhatsApp" / "Telefone Brasil e WhatsApp"; phoneItaly: "Telefono Italia" / "Italy Phone" / "Telefone Itália"
+- Verified: bun run lint clean; eval - wa.me/5511941466406 inside Brazil li, target _blank, aria-label correct, Italy row has no wa.me anchor; labels render correctly; scrollWidth 390/1440 (no overflow); zero page errors; screenshots scripts/footer_whatsapp_fix_desktop.png / _mobile.png
+
+Stage Summary:
+- WhatsApp affordance now attached to the Brazil line: +55 (11) 941466406 -> wa.me/5511941466406; Italy line is phone-only
+- Labels updated trilingually; layout/visual design unchanged from Task 27

@@ -68,8 +68,8 @@ export function Footer() {
               {t.footer.contactTitle}
             </p>
             <ul className="mt-4 flex flex-col gap-1.5">
-              <li>
-                <a href="tel:+5511941466406" className={ROW_ANCHOR}>
+              <li className="flex items-center gap-2">
+                <a href="tel:+5511941466406" className={`${ROW_ANCHOR} flex-1`}>
                   <span className={ICON_BOX_VIOLET}>
                     <Phone className="h-4 w-4" aria-hidden />
                   </span>
@@ -78,9 +78,18 @@ export function Footer() {
                     <span className={ROW_VALUE}>{PHONE_BR}</span>
                   </span>
                 </a>
+                <a
+                  href="https://wa.me/5511941466406"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`WhatsApp ${PHONE_BR}`}
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cyan-400/10 text-cyan-300 ring-1 ring-white/10 transition-colors duration-300 hover:bg-cyan-400/20 hover:text-cyan-200 hover:ring-cyan-400/40"
+                >
+                  <MessageCircle className="h-[18px] w-[18px]" aria-hidden />
+                </a>
               </li>
-              <li className="flex items-center gap-2">
-                <a href="tel:+393272371259" className={`${ROW_ANCHOR} flex-1`}>
+              <li>
+                <a href="tel:+393272371259" className={ROW_ANCHOR}>
                   <span className={ICON_BOX_VIOLET}>
                     <Phone className="h-4 w-4" aria-hidden />
                   </span>
@@ -88,15 +97,6 @@ export function Footer() {
                     <span className={ROW_LABEL}>{t.footer.phoneItaly}</span>
                     <span className={ROW_VALUE}>{PHONE_IT}</span>
                   </span>
-                </a>
-                <a
-                  href="https://wa.me/393272371259"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`WhatsApp ${PHONE_IT}`}
-                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cyan-400/10 text-cyan-300 ring-1 ring-white/10 transition-colors duration-300 hover:bg-cyan-400/20 hover:text-cyan-200 hover:ring-cyan-400/40"
-                >
-                  <MessageCircle className="h-[18px] w-[18px]" aria-hidden />
                 </a>
               </li>
               <li>
