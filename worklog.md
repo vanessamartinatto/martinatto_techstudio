@@ -396,3 +396,19 @@ Work Log:
 Stage Summary:
 - WhatsApp affordance now attached to the Brazil line: +55 (11) 941466406 -> wa.me/5511941466406; Italy line is phone-only
 - Labels updated trilingually; layout/visual design unchanged from Task 27
+
+---
+Task ID: 29
+Agent: Super Z (main)
+Task: Configure the contact form to deliver to info@martinatto.it (user request)
+
+Work Log:
+- DISCOVERED: the environment rollback (documented in Task 12) had also reverted the Task 4 email integration - route.ts only saved to DB, mailer.ts was orphaned (0 imports), nodemailer was uninstalled
+- Reinstalled nodemailer@10.0.10 + @types/nodemailer
+- Re-wired src/app/api/contact/route.ts (Task 4 design): after saving, parallel sendNotificationEmail (to CONTACT_EMAIL, Reply-To visitor) + sendConfirmationEmail (to visitor, IT/EN/PT template); emailStatus "sent"|"failed"|"not_configured" in the response; mail failure never fails the request (submission already persisted)
+- .env: CONTACT_EMAIL=info@martinatto.it; MX lookup of martinatto.it -> mx00/mx01.ionos.it (IONOS hosts the domain mailbox); per user's AskUserQuestion choices (sender = info@martinatto.it, password via chat) set SMTP_HOST=smtp.ionos.it SMTP_PORT=465 SMTP_USER=info@martinatto.it; SMTP_PASS pending (user will paste it in chat)
+- Verified: bun run lint clean; POST /api/contact -> 201 {ok, id, emailStatus:"not_configured"} (correct while SMTP_PASS empty); test record deleted via scripts/cleanup-test-records.ts
+
+Stage Summary:
+- Form -> email pipeline fully restored; recipient is info@martinatto.it; sender will be info@martinatto.it via IONOS SMTP (professional From, no spoofing)
+- ACTIVATION PENDING: waiting for the IONOS mailbox password from the user -> fill SMTP_PASS in .env, restart dev server, then POST test must return emailStatus:"sent" (notification arrives at info@martinatto.it + auto-confirmation to the visitor)
