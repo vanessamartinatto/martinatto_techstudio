@@ -1,4 +1,20 @@
-import nodemailer from "nodemailer";
+/**
+ * Envio de e-mails do formulário de contato via API HTTP do Brevo (ex-Sendinblue).
+ *
+ * Por que API e não SMTP?
+ * O egress SMTP do Render (portas 25/465/587) não estabelece conexão nem com
+ * IONOS nem com Brevo ("Connection timeout"). A API HTTP usa HTTPS porta 443,
+ * que não tem restrição de saída.
+ *
+ * Setup (Brevo):
+ * 1. Criar conta em brevo.com com info@martinatto.it e confirmar o e-mail
+ *    (remetente verificado)
+ * 2. Painel Brevo → canto superior direito (perfil) → "SMTP & API" → aba
+ *    "API Keys" → "Generate new key" (chave no formato xkeysib-...)
+ * 3. Render → Environment: adicionar BREVO_API_KEY=xkeysib-... e manter
+ *    CONTACT_EMAIL=info@martinatto.it
+ *    (as variáveis SMTP_* podem ser removidas — não são mais usadas)
+ */
 
 export type ContactLang = "it" | "en" | "pt";
 
@@ -10,33 +26,39 @@ export interface ContactData {
   lang: ContactLang;
 }
 
-/**
- * Gmail SMTP configuration via environment variables.
- *
- * Setup (Google App Password):
- * 1. Google Account → Security → 2-Step Verification (must be ON)
- * 2. Google Account → Security → App passwords → generate one
- * 3. Fill .env: SMTP_USER (your Gmail) + SMTP_PASS (the 16-char app password)
- * 4. CONTACT_EMAIL = address that receives the notifications
- */
-
-const SMTP_HOST = process.env.SMTP_HOST ?? "smtp.gmail.com";
-const SMTP_PORT = Number(process.env.SMTP_PORT ?? 465);
-const SMTP_USER = process.env.SMTP_USER ?? "";
-const SMTP_PASS = process.env.SMTP_PASS ?? "";
+const BREVO_API_KEY = process.env.BREVO_API_KEY ?? "";
 const CONTACT_EMAIL = process.env.CONTACT_EMAIL ?? "";
+const SENDER_EMAIL = process.env.SENDER_EMAIL ?? CONTACT_EMAIL;
+const BREVO_API_URL =
+  process.env.BREVO_API_URL ?? "https://api.brevo.com/v3/smtp/email";
 
 export function isMailConfigured(): boolean {
-  return Boolean(SMTP_USER && SMTP_PASS && CONTACT_EMAIL);
+  return Boolean(BREVO_API_KEY && SENDER_EMAIL && CONTACT_EMAIL);
 }
 
-function getTransport() {
-  return nodemailer.createTransport({
-    host: SMTP_HOST,
-    port: SMTP_PORT,
-    secure: SMTP_PORT === 465,
-    auth: { user: SMTP_USER, pass: SMTP_PASS },
+interface BrevoEmailPayload {
+  sender: { name: string; email: string };
+  to: { email: string; name?: string }[];
+  replyTo?: { email: string };
+  subject: string;
+  textContent: string;
+}
+
+async function sendViaBrevo(payload: BrevoEmailPayload): Promise<void> {
+  const res = await fetch(BREVO_API_URL, {
+    method: "POST",
+    headers: {
+      "api-key": BREVO_API_KEY,
+      "content-type": "application/json",
+      accept: "application/json",
+    },
+    body: JSON.stringify(payload),
   });
+
+  if (!res.ok) {
+    const detail = (await res.text().catch(() => "")).slice(0, 300);
+    throw new Error(`Brevo API ${res.status}: ${detail}`);
+  }
 }
 
 const PROJECT_TYPE_LABELS: Record<ContactLang, Record<string, string>> = {
@@ -69,8 +91,6 @@ function projectTypeLabel(value: string, lang: ContactLang): string {
 /* ------------------------------------------------------------------ */
 
 export async function sendNotificationEmail(data: ContactData): Promise<void> {
-  const transport = getTransport();
-
   const subject = `Nuova richiesta dal sito — ${data.name} (${projectTypeLabel(data.projectType, "it")})`;
 
   const text = [
@@ -91,12 +111,12 @@ export async function sendNotificationEmail(data: ContactData): Promise<void> {
     "Martinatto Tech_Studio — notifica automatica",
   ].join("\n");
 
-  await transport.sendMail({
-    from: `"Martinatto Tech_Studio" <${SMTP_USER}>`,
-    to: CONTACT_EMAIL,
-    replyTo: data.email,
+  await sendViaBrevo({
+    sender: { name: "Martinatto Tech_Studio", email: SENDER_EMAIL },
+    to: [{ email: CONTACT_EMAIL }],
+    replyTo: { email: data.email },
     subject,
-    text,
+    textContent: text,
   });
 }
 
@@ -164,12 +184,14 @@ const CONFIRMATION_TEMPLATES: Record<
 export async function sendConfirmationEmail(data: ContactData): Promise<void> {
   const template = CONFIRMATION_TEMPLATES[data.lang] ?? CONFIRMATION_TEMPLATES.it;
   const type = projectTypeLabel(data.projectType, data.lang);
-  const transport = getTransport();
 
-  await transport.sendMail({
-    from: `"Vanessa Martinatto — Martinatto Tech_Studio" <${SMTP_USER}>`,
-    to: data.email,
+  await sendViaBrevo({
+    sender: {
+      name: "Vanessa Martinatto — Martinatto Tech_Studio",
+      email: SENDER_EMAIL,
+    },
+    to: [{ email: data.email, name: data.name }],
     subject: template.subject,
-    text: template.body(data.name, type),
+    textContent: template.body(data.name, type),
   });
 }
