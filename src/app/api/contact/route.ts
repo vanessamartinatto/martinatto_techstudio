@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { db } from "@/lib/db";
+import { isMailConfigured, sendNotificationEmail, sendConfirmationEmail } from "@/lib/mailer";
 
 const contactSchema = z.object({
   name: z.string().trim().min(2).max(120),
@@ -32,7 +33,26 @@ export async function POST(request: Request) {
       },
     });
 
-    return NextResponse.json({ ok: true, id: saved.id }, { status: 201 });
+    let emailStatus: "sent" | "failed" | "not_configured" = "not_configured";
+    let emailError: string | undefined = undefined;
+    if (isMailConfigured()) {
+      try {
+        await Promise.all([sendNotificationEmail(parsed.data), sendConfirmationEmail(parsed.data)]);
+        emailStatus = "sent";
+      } catch (error) {
+        console.error("Email delivery error:", error);
+        emailStatus = "failed";
+        emailError =
+          error instanceof Error
+            ? `${error.message}${(error as any).response ? " | " + (error as any).response : ""}`
+            : String(error);
+      }
+    }
+
+    return NextResponse.json(
+      { ok: true, id: saved.id, emailStatus, emailError },
+      { status: 201 }
+    );
   } catch (error) {
     console.error("Contact form error:", error);
     return NextResponse.json({ error: "SERVER_ERROR" }, { status: 500 });
