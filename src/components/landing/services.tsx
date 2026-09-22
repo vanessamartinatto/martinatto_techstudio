@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import {
   Clock,
   LayoutGrid,
@@ -29,8 +30,67 @@ const TINTS = [
   },
 ];
 
+/* Taxa de segurança enquanto /api/fx não responde (e se ele falhar). */
+const FALLBACK_RATE = 6.2;
+
+/**
+ * Busca a taxa EUR->BRL do dia (via /api/fx, taxas diárias do BCE).
+ * Só é chamada quando o idioma é PT. Começa com a taxa de segurança
+ * para não haver "salto" de layout; corrige em ~200ms.
+ */
+function useEurBrlRate(active: boolean) {
+  const [rate, setRate] = useState(FALLBACK_RATE);
+  const [date, setDate] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!active) return;
+    let alive = true;
+    fetch("/api/fx")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (!alive || !d) return;
+        if (typeof d.rate === "number" && d.rate > 0) setRate(d.rate);
+        if (typeof d.date === "string") setDate(d.date);
+      })
+      .catch(() => {
+        /* mantém a taxa de segurança */
+      });
+    return () => {
+      alive = false;
+    };
+  }, [active]);
+
+  return { rate, date };
+}
+
+/* Agrupa milhares: 4900 -> "4.900" (it/pt) ou "4,900" (en) */
+function groupDigits(n: number, sep: "," | "."): string {
+  return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, sep);
+}
+
+/**
+ * Formatação manual (sem Intl) para garantir resultado idêntico em
+ * servidor (SSR), crawler e navegador — independe do ICU do runtime.
+ *
+ * IT: "4.900 €" | EN: "€4,900" | PT: converte EUR->BRL com o câmbio
+ * do dia e arredonda para baixo em múltiplos de R$ 50 (preço de
+ * marketing limpo, sempre a favor do cliente).
+ */
+function formatPrice(priceEur: number, lang: string, rate: number): string {
+  if (lang === "pt") {
+    const brl = Math.floor((priceEur * rate) / 50) * 50;
+    return `R$ ${groupDigits(brl, ".")}`;
+  }
+  if (lang === "en") {
+    return `€${groupDigits(priceEur, ",")}`;
+  }
+  return `${groupDigits(priceEur, ".")}\u00A0€`;
+}
+
 export function Services() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+  const isPt = lang === "pt";
+  const { rate, date: fxDate } = useEurBrlRate(isPt);
 
   return (
     <section
@@ -60,18 +120,16 @@ export function Services() {
                   <p className="mt-3 leading-relaxed text-slate-400">
                     {item.description}
                   </p>
-                  <span className="mt-auto pt-7">
-                    <span
-                      className={`inline-flex items-center gap-1.5 rounded-full border px-4 py-2 font-mono text-sm transition-colors ${
-                        i === 1
-                          ? "border-cyan-400/25 bg-cyan-500/10 text-cyan-300"
-                          : "border-violet-400/25 bg-violet-500/10 text-violet-300"
-                      }`}
-                    >
+                  <div className="mt-auto pt-7">
+                    <span className="block font-display text-lg font-semibold text-white">
+                      {t.services.priceLabel}{" "}
+                      {formatPrice(item.price, lang, rate)}
+                    </span>
+                    <span className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-violet-400/25 bg-violet-500/10 px-4 py-2 font-mono text-sm text-violet-300 transition-colors">
                       <Clock className="h-3.5 w-3.5" aria-hidden />
                       {item.time}
                     </span>
-                  </span>
+                  </div>
                 </article>
               </Reveal>
             );
@@ -112,9 +170,17 @@ export function Services() {
                   <p className="mt-3 leading-relaxed text-slate-400">
                     {item.description}
                   </p>
-                  <span className="mt-auto pt-7">
+                  <div className="mt-auto pt-7">
                     <span
-                      className={`inline-flex items-center gap-1.5 rounded-full border px-4 py-2 font-mono text-sm transition-colors ${
+                      className={`block font-display text-lg font-semibold ${
+                        isHighlight ? "text-cyan-300" : "text-white"
+                      }`}
+                    >
+                      {t.services.priceLabel}{" "}
+                      {formatPrice(item.price, lang, rate)}
+                    </span>
+                    <span
+                      className={`mt-3 inline-flex items-center gap-1.5 rounded-full border px-4 py-2 font-mono text-sm transition-colors ${
                         isHighlight
                           ? "border-cyan-400/25 bg-cyan-500/10 text-cyan-300"
                           : "border-violet-400/25 bg-violet-500/10 text-violet-300"
@@ -123,12 +189,21 @@ export function Services() {
                       <Clock className="h-3.5 w-3.5" aria-hidden />
                       {item.time}
                     </span>
-                  </span>
+                  </div>
                 </article>
               </Reveal>
             );
           })}
         </div>
+
+        {/* Nota de câmbio — apenas no idioma PT (preços convertidos) */}
+        {isPt && (
+          <p className="mt-6 text-center font-mono text-xs text-slate-500">
+            {t.services.fxNote}
+            {fxDate ? ` · ${fxDate}` : ""} · €1 = R${" "}
+            {rate.toFixed(2).replace(".", ",")}
+          </p>
+        )}
       </div>
     </section>
   );
