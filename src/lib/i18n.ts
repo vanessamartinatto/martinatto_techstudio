@@ -14,7 +14,7 @@ const it = {
     highlight: "prodotto digitale funzionante",
     lead2: " e online in settimane, non mesi.",
     subtitle:
-      "Unisco project management IT, architettura dei sistemi e intelligenza artificiale per costruire MVP, web app e automazioni su misura per il tuo business.",
+      "Unisco project management IT, architettura dei sistemi e intelligenza artificiale per costruire MVP, web app e siti web su misura per il tuo business.",
     ctaPrimary: "Richiedi un Preventivo per il Mio MVP",
     ctaSecondary: "Guarda il Progetto di Riferimento",
     stats: [
@@ -65,6 +65,21 @@ const it = {
         description:
           "Collego sistemi (CRM, form, WhatsApp, gateway di pagamento) e assistenti IA che eliminano le attività ripetitive del team.",
         time: "tempi: 1-2 settimane",
+      },
+    ],
+    newLabel: "Novità",
+    extras: [
+      {
+        title: "Sito Express — online in 3 giorni lavorativi",
+        description:
+          "Landing page o sito istituzionale professionale, veloce e ottimizzato per Google — perfetto per lanciare la tua idea o portare il tuo business online senza aspettare mesi.",
+        time: "online in 3 giorni lavorativi",
+      },
+      {
+        title: "E-commerce & Negozi Online su Misura",
+        description:
+          "Inizia a vendere con catalogo, carrello e pagamenti integrati (Stripe, PayPal o bonifico) — negozi essenziali e professionali, pronti a crescere.",
+        time: "tempi: 2-3 settimane",
       },
     ],
   },
@@ -155,10 +170,6 @@ const it = {
     tagline: "AI Software & Consulting",
     vat: "P.IVA: 14705270966",
     rights: "© 2026 Vanessa Martinatto. Tutti i diritti riservati.",
-    contactTitle: "Contatti",
-    phoneBrazil: "Telefono Brasile e WhatsApp",
-    phoneItaly: "Telefono Italia",
-    email: "E-mail",
   },
 };
 
@@ -178,7 +189,7 @@ const en: Dict = {
     highlight: "working digital product",
     lead2: ", online in weeks, not months.",
     subtitle:
-      "I combine IT project management, systems architecture and artificial intelligence to build MVPs, web apps and custom automations for your business.",
+      "I combine IT project management, systems architecture and artificial intelligence to build MVPs, web apps and custom websites for your business.",
     ctaPrimary: "Request a Quote for My MVP",
     ctaSecondary: "View the Reference Project",
     stats: [
@@ -229,6 +240,21 @@ const en: Dict = {
         description:
           "I connect systems (CRM, forms, WhatsApp, payment gateways) and build AI assistants that eliminate your team's repetitive tasks.",
         time: "timeline: 1-2 weeks",
+      },
+    ],
+    newLabel: "New",
+    extras: [
+      {
+        title: "Express Website — live in 3 business days",
+        description:
+          "A professional, fast, SEO-optimized landing page or business website — perfect to launch your idea or get your business online without waiting months.",
+        time: "live in 3 business days",
+      },
+      {
+        title: "Custom E-commerce & Online Stores",
+        description:
+          "Start selling with catalog, cart and integrated payments (Stripe, PayPal and more) — lean, professional stores ready to grow.",
+        time: "timeline: 2-3 weeks",
       },
     ],
   },
@@ -319,10 +345,6 @@ const en: Dict = {
     tagline: "AI Software & Consulting",
     vat: "P.IVA: 14705270966",
     rights: "© 2026 Vanessa Martinatto. All rights reserved.",
-    contactTitle: "Contact",
-    phoneBrazil: "Brazil Phone & WhatsApp",
-    phoneItaly: "Italy Phone",
-    email: "Email",
   },
 };
 
@@ -340,7 +362,7 @@ const pt: Dict = {
     highlight: "produto digital funcional",
     lead2: " e online em semanas, não meses.",
     subtitle:
-      "Uno gerenciamento de projetos de TI, arquitetura de sistemas e inteligência artificial para construir MVPs, web apps e automações sob medida para o seu negócio.",
+      "Uno gerenciamento de projetos de TI, arquitetura de sistemas e inteligência artificial para construir MVPs, web apps e sites sob medida para o seu negócio.",
     ctaPrimary: "Solicitar Orçamento para o Meu MVP",
     ctaSecondary: "Ver o Projeto de Referência",
     stats: [
@@ -391,6 +413,21 @@ const pt: Dict = {
         description:
           "Conecto sistemas (CRM, formulários, WhatsApp, gateways de pagamento) e crio assistentes de IA que eliminam as tarefas repetitivas da equipe.",
         time: "prazo: 1-2 semanas",
+      },
+    ],
+    newLabel: "Novo",
+    extras: [
+      {
+        title: "Site Expresso — no ar em 3 dias úteis",
+        description:
+          "Landing page ou site institucional profissional, rápido e otimizado para o Google — perfeito para lançar sua ideia, validar um projeto ou colocar seu negócio online sem esperar meses.",
+        time: "no ar em 3 dias úteis",
+      },
+      {
+        title: "Loja Online & E-commerce sob Medida",
+        description:
+          "Comece a vender com catálogo, carrinho e pagamentos integrados (Stripe, PayPal e outros) — lojas enxutas e profissionais, prontas para crescer.",
+        time: "prazo: 2-3 semanas",
       },
     ],
   },
@@ -481,10 +518,6 @@ const pt: Dict = {
     tagline: "AI Software & Consulting",
     vat: "P.IVA: 14705270966",
     rights: "© 2026 Vanessa Martinatto. Todos os direitos reservados.",
-    contactTitle: "Contato",
-    phoneBrazil: "Telefone Brasil e WhatsApp",
-    phoneItaly: "Telefone Itália",
-    email: "E-mail",
   },
 };
 

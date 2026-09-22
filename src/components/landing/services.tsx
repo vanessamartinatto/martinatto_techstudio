@@ -1,10 +1,18 @@
 "use client";
 
-import { Clock, LayoutGrid, Rocket, Workflow } from "lucide-react";
+import {
+  Clock,
+  LayoutGrid,
+  Rocket,
+  ShoppingCart,
+  Workflow,
+  Zap,
+} from "lucide-react";
 import { useLanguage } from "./language-context";
 import { Reveal, SectionTitle } from "./shared";
 
 const ICONS = [Rocket, LayoutGrid, Workflow];
+const EXTRA_ICONS = [Zap, ShoppingCart];
 // Alternating Electric Violet & Cyan tints
 const TINTS = [
   {
@@ -56,6 +64,58 @@ export function Services() {
                     <span
                       className={`inline-flex items-center gap-1.5 rounded-full border px-4 py-2 font-mono text-sm transition-colors ${
                         i === 1
+                          ? "border-cyan-400/25 bg-cyan-500/10 text-cyan-300"
+                          : "border-violet-400/25 bg-violet-500/10 text-violet-300"
+                      }`}
+                    >
+                      <Clock className="h-3.5 w-3.5" aria-hidden />
+                      {item.time}
+                    </span>
+                  </span>
+                </article>
+              </Reveal>
+            );
+          })}
+        </div>
+
+        {/* Segunda fileira: Site Expresso (destaque) + Loja Online */}
+        <div className="mt-6 grid gap-6 md:grid-cols-2">
+          {t.services.extras.map((item, i) => {
+            const Icon = EXTRA_ICONS[i] ?? Zap;
+            const isHighlight = i === 0;
+            return (
+              <Reveal key={item.title} delay={i * 0.1} className="h-full">
+                <article
+                  className={`group relative flex h-full flex-col rounded-3xl border p-8 shadow-lg shadow-black/20 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl ${
+                    isHighlight
+                      ? "border-cyan-400/30 bg-gradient-to-br from-cyan-500/[0.07] via-[#0B0E16] to-[#0B0E16] hover:border-cyan-400/60 hover:shadow-cyan-500/20"
+                      : "border-white/[0.07] bg-[#0B0E16] hover:border-violet-400/40 hover:shadow-violet-600/10"
+                  }`}
+                >
+                  {isHighlight && (
+                    <span className="absolute right-6 top-6 rounded-full bg-cyan-400 px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-slate-950">
+                      {t.services.newLabel}
+                    </span>
+                  )}
+                  <div
+                    className={`mb-6 flex h-12 w-12 items-center justify-center rounded-2xl ring-1 transition-colors duration-300 ${
+                      isHighlight
+                        ? "bg-cyan-500/15 text-cyan-300 ring-cyan-400/30 group-hover:bg-cyan-400 group-hover:text-slate-950 group-hover:ring-cyan-300"
+                        : "bg-violet-500/10 text-violet-300 ring-violet-400/20 group-hover:bg-violet-500 group-hover:text-white group-hover:ring-violet-300"
+                    }`}
+                  >
+                    <Icon className="h-6 w-6" aria-hidden />
+                  </div>
+                  <h3 className="font-display text-2xl font-semibold leading-snug text-white">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 leading-relaxed text-slate-400">
+                    {item.description}
+                  </p>
+                  <span className="mt-auto pt-7">
+                    <span
+                      className={`inline-flex items-center gap-1.5 rounded-full border px-4 py-2 font-mono text-sm transition-colors ${
+                        isHighlight
                           ? "border-cyan-400/25 bg-cyan-500/10 text-cyan-300"
                           : "border-violet-400/25 bg-violet-500/10 text-violet-300"
                       }`}
