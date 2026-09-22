@@ -47,24 +47,29 @@ const it = {
   services: {
     label: "Servizi",
     title: "Cosa costruisco per te",
+    priceLabel: "Da",
+    fxNote: "Cambi del giorno · BCE",
     items: [
       {
         title: "Sviluppo di MVP Express (Web/App)",
         description:
           "Prodotti Minimi Funzionanti completi — autenticazione, database, pannello amministrativo e pagamenti — per validare rapidamente startup e nuove idee.",
         time: "tempi: 2-4 settimane",
+        price: 4900,
       },
       {
         title: "Digitalizzazione di Metodologie & App su Misura",
         description:
           "Trasformo fogli di calcolo e processi manuali (consulenza finanziaria, mentoring e servizi) in web app e SaaS con il brand del cliente.",
         time: "tempi: 2-3 settimane",
+        price: 2490,
       },
       {
         title: "Automazione dei Processi & Integrazione IA",
         description:
           "Collego sistemi (CRM, form, WhatsApp, gateway di pagamento) e assistenti IA che eliminano le attività ripetitive del team.",
         time: "tempi: 1-2 settimane",
+        price: 890,
       },
     ],
     newLabel: "Novità",
@@ -74,12 +79,14 @@ const it = {
         description:
           "Landing page o sito istituzionale professionale, veloce e ottimizzato per Google — perfetto per lanciare la tua idea o portare il tuo business online senza aspettare mesi.",
         time: "online in 3 giorni lavorativi",
+        price: 490,
       },
       {
         title: "E-commerce & Negozi Online su Misura",
         description:
           "Inizia a vendere con catalogo, carrello e pagamenti integrati (Stripe, PayPal o bonifico) — negozi essenziali e professionali, pronti a crescere.",
         time: "tempi: 2-3 settimane",
+        price: 1490,
       },
     ],
   },
@@ -222,24 +229,29 @@ const en: Dict = {
   services: {
     label: "Services",
     title: "What I build for you",
+    priceLabel: "From",
+    fxNote: "Daily exchange rate · ECB",
     items: [
       {
         title: "Express MVP Development (Web/App)",
         description:
           "Complete Minimum Viable Products — authentication, database, admin panel and payments — to quickly validate startups and new ideas.",
         time: "timeline: 2-4 weeks",
+        price: 4900,
       },
       {
         title: "Digitalization of Methodologies & Custom Apps",
         description:
           "I transform spreadsheets and manual processes (financial consulting, mentoring and services) into web apps and SaaS with the client's own brand.",
         time: "timeline: 2-3 weeks",
+        price: 2490,
       },
       {
         title: "Process Automation & AI Integration",
         description:
           "I connect systems (CRM, forms, WhatsApp, payment gateways) and build AI assistants that eliminate your team's repetitive tasks.",
         time: "timeline: 1-2 weeks",
+        price: 890,
       },
     ],
     newLabel: "New",
@@ -249,12 +261,14 @@ const en: Dict = {
         description:
           "A professional, fast, SEO-optimized landing page or business website — perfect to launch your idea or get your business online without waiting months.",
         time: "live in 3 business days",
+        price: 490,
       },
       {
         title: "Custom E-commerce & Online Stores",
         description:
           "Start selling with catalog, cart and integrated payments (Stripe, PayPal and more) — lean, professional stores ready to grow.",
         time: "timeline: 2-3 weeks",
+        price: 1490,
       },
     ],
   },
@@ -395,24 +409,29 @@ const pt: Dict = {
   services: {
     label: "Serviços",
     title: "O que eu construo para você",
+    priceLabel: "A partir de",
+    fxNote: "Valores em reais convertidos com o câmbio do dia (BCE)",
     items: [
       {
         title: "Desenvolvimento de MVP Express (Web/App)",
         description:
           "Produtos Mínimos Viáveis completos — autenticação, banco de dados, painel administrativo e pagamentos — para validar rapidamente startups e novas ideias.",
         time: "prazo: 2-4 semanas",
+        price: 4900,
       },
       {
         title: "Digitalização de Metodologias & Apps sob Medida",
         description:
           "Transformo planilhas e processos manuais (consultoria financeira, mentoring e serviços) em web apps e SaaS com a marca do cliente.",
         time: "prazo: 2-3 semanas",
+        price: 2490,
       },
       {
         title: "Automação de Processos & Integração de IA",
         description:
           "Conecto sistemas (CRM, formulários, WhatsApp, gateways de pagamento) e crio assistentes de IA que eliminam as tarefas repetitivas da equipe.",
         time: "prazo: 1-2 semanas",
+        price: 890,
       },
     ],
     newLabel: "Novo",
@@ -422,12 +441,14 @@ const pt: Dict = {
         description:
           "Landing page ou site institucional profissional, rápido e otimizado para o Google — perfeito para lançar sua ideia, validar um projeto ou colocar seu negócio online sem esperar meses.",
         time: "no ar em 3 dias úteis",
+        price: 490,
       },
       {
         title: "Loja Online & E-commerce sob Medida",
         description:
           "Comece a vender com catálogo, carrinho e pagamentos integrados (Stripe, PayPal e outros) — lojas enxutas e profissionais, prontas para crescer.",
         time: "prazo: 2-3 semanas",
+        price: 1490,
       },
     ],
   },
@@ -448,7 +469,7 @@ const pt: Dict = {
   },
   process: {
     label: "Como Funciona",
-    title: "Do escopo ao deploy em 4 passos",
+    title: "Do escopo ao deploy in 4 passos",
     steps: [
       {
         num: "01",
