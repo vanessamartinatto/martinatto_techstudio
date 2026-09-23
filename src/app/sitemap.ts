@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 /* SEO — Sitemap dinâmico servido em /sitemap.xml.
    Se mudar o domínio, atualize também layout.tsx e public/robots.txt. */
-const SITE_URL = "https://martinatto-techstudio.onrender.com";
+const SITE_URL = "https://martinatto.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

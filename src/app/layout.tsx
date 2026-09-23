@@ -9,7 +9,7 @@ import { Toaster } from "@/components/ui/toaster";
    Se tiver domínio próprio (ex.: https://martinatto.com),
    troque AQUI e no src/app/sitemap.ts e no public/robots.txt.
    ============================================================ */
-const SITE_URL = "https://martinatto-techstudio.onrender.com";
+const SITE_URL = "https://martinatto.com"; "https://martinatto.it";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Martinatto Tech_Studio | MVP e Automazione IA in settimane",
+    title: "Martinatto Tech_Studio | MVP e Web App in settimane",
     description:
       "Trasformo la tua idea in un prodotto digitale funzionante e online in settimane, non mesi. MVP, web app, siti web e automazione con IA per startup e PMI.",
     siteName: "Martinatto Tech_Studio",
