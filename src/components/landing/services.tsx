@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import {
   Clock,
+  CreditCard,
   LayoutGrid,
   Rocket,
   ShoppingCart,
@@ -87,6 +88,16 @@ function formatPrice(priceEur: number, lang: string, rate: number): string {
   return `${groupDigits(priceEur, ".")}\u00A0€`;
 }
 
+/* Linha discreta com o plano de pagamento (50/50 · até 3x) */
+function PayNote({ label }: { label: string }) {
+  return (
+    <span className="mt-1.5 flex items-start gap-1.5 text-sm leading-snug text-slate-400">
+      <CreditCard className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden />
+      {label}
+    </span>
+  );
+}
+
 export function Services() {
   const { t, lang } = useLanguage();
   const isPt = lang === "pt";
@@ -125,6 +136,7 @@ export function Services() {
                       {t.services.priceLabel}{" "}
                       {formatPrice(item.price, lang, rate)}
                     </span>
+                    <PayNote label={t.services.payLabel} />
                     <span className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-violet-400/25 bg-violet-500/10 px-4 py-2 font-mono text-sm text-violet-300 transition-colors">
                       <Clock className="h-3.5 w-3.5" aria-hidden />
                       {item.time}
@@ -179,6 +191,7 @@ export function Services() {
                       {t.services.priceLabel}{" "}
                       {formatPrice(item.price, lang, rate)}
                     </span>
+                    <PayNote label={t.services.payLabel} />
                     <span
                       className={`mt-3 inline-flex items-center gap-1.5 rounded-full border px-4 py-2 font-mono text-sm transition-colors ${
                         isHighlight

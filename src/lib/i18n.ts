@@ -49,6 +49,7 @@ const it = {
     title: "Cosa costruisco per te",
     priceLabel: "Da",
     fxNote: "Cambi del giorno · BCE",
+    payLabel: "50% all'inizio, 50% alla consegna · progetti più grandi fino a 3 rate",
     items: [
       {
         title: "Sviluppo di MVP Express (Web/App)",
@@ -231,6 +232,7 @@ const en: Dict = {
     title: "What I build for you",
     priceLabel: "From",
     fxNote: "Daily exchange rate · ECB",
+    payLabel: "50% upfront, 50% on delivery · larger projects up to 3 installments",
     items: [
       {
         title: "Express MVP Development (Web/App)",
@@ -411,6 +413,7 @@ const pt: Dict = {
     title: "O que eu construo para você",
     priceLabel: "A partir de",
     fxNote: "Valores em reais convertidos com o câmbio do dia (BCE)",
+    payLabel: "50% no início, 50% na entrega · projetos maiores em até 3x",
     items: [
       {
         title: "Desenvolvimento de MVP Express (Web/App)",
