@@ -44,6 +44,15 @@ function ContactLink({
   );
 }
 
+/* Rótulo pequeno de grupo (Brasile / Italia / Email) */
+function GroupLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-slate-600">
+      {children}
+    </p>
+  );
+}
+
 export function Footer() {
   const { t } = useLanguage();
 
@@ -58,7 +67,9 @@ export function Footer() {
   return (
     <footer className="mt-auto border-t border-white/[0.06] bg-[#04050A] text-slate-300">
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-        <div className="flex flex-col justify-between gap-10 md:flex-row md:items-start">
+        {/* Grid 3 colunas: marca | navegação | contatos — distribui o peso igualmente */}
+        <div className="grid gap-12 md:grid-cols-[1.2fr_0.8fr_1fr] md:gap-10">
+          {/* Coluna 1 — marca */}
           <div>
             <a href="#" aria-label="Martinatto Tech_Studio">
               <Image
@@ -66,63 +77,88 @@ export function Footer() {
                 alt="Martinatto Tech_Studio"
                 width={518}
                 height={640}
-                className="h-28 w-auto sm:h-36"
+                className="h-24 w-auto sm:h-28"
               />
             </a>
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-slate-500">
+              {t.footer.blurb}
+            </p>
+            <p className="mt-3 font-mono text-xs tracking-wider text-slate-600">
               {t.footer.vat}
             </p>
-
-            {/* Contatos: Brasil (tel + WhatsApp), Itália (tel) e e-mails */}
-            <div className="mt-4 flex flex-col gap-2.5">
-              <div className="flex items-center gap-3">
-                <ContactLink href="tel:+5511941466406" label="Ligar para o Brasil">
-                  <Phone className="h-3.5 w-3.5 shrink-0" aria-hidden />
-                  +55 (11) 94146-6406
-                </ContactLink>
-                <ContactLink
-                  href="https://wa.me/5511941466406"
-                  label="WhatsApp"
-                  external
-                >
-                  <WhatsAppIcon className="h-4 w-4 shrink-0" />
-                </ContactLink>
-              </div>
-              <ContactLink href="tel:+393272371259" label="Chiama l'Italia">
-                <Phone className="h-3.5 w-3.5 shrink-0" aria-hidden />
-                +39 327 237 1259
-              </ContactLink>
-              <ContactLink href="mailto:info@martinatto.com" label="Email .com">
-                <Mail className="h-3.5 w-3.5 shrink-0" aria-hidden />
-                info@martinatto.com
-              </ContactLink>
-              <ContactLink href="mailto:info@martinatto.it" label="Email .it">
-                <Mail className="h-3.5 w-3.5 shrink-0" aria-hidden />
-                info@martinatto.it
-              </ContactLink>
-            </div>
           </div>
 
-          <nav aria-label="Footer" className="flex flex-col gap-3">
-            {links.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-sm text-slate-400 transition-colors hover:text-cyan-300"
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
+          {/* Coluna 2 — navegação (centro) */}
+          <div className="md:justify-self-center">
+            <h3 className="font-mono text-xs uppercase tracking-[0.3em] text-violet-400">
+              {t.footer.navTitle}
+            </h3>
+            <nav aria-label="Footer" className="mt-5 flex flex-col gap-3">
+              {links.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm text-slate-400 transition-colors hover:text-cyan-300"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+          </div>
+
+          {/* Coluna 3 — contatos (direita) */}
+          <div className="md:justify-self-end">
+            <h3 className="font-mono text-xs uppercase tracking-[0.3em] text-violet-400">
+              {t.footer.contactTitle}
+            </h3>
+            <div className="mt-5 space-y-5">
+              <div>
+                <GroupLabel>{t.footer.brazil}</GroupLabel>
+                <div className="mt-2 flex items-center gap-3">
+                  <ContactLink
+                    href="tel:+5511941466406"
+                    label="Ligar para o Brasil"
+                  >
+                    <Phone className="h-3.5 w-3.5 shrink-0" aria-hidden />
+                    +55 (11) 94146-6406
+                  </ContactLink>
+                  <ContactLink
+                    href="https://wa.me/5511941466406"
+                    label="WhatsApp"
+                    external
+                  >
+                    <WhatsAppIcon className="h-4 w-4 shrink-0" />
+                  </ContactLink>
+                </div>
+              </div>
+
+              <div>
+                <GroupLabel>{t.footer.italy}</GroupLabel>
+                <div className="mt-2">
+                  <ContactLink href="tel:+393272371259" label="Chiama l'Italia">
+                    <Phone className="h-3.5 w-3.5 shrink-0" aria-hidden />
+                    +39 327 237 1259
+                  </ContactLink>
+                </div>
+              </div>
+
+              <div>
+                <GroupLabel>{t.footer.email}</GroupLabel>
+                <div className="mt-2 flex flex-col gap-1.5">
+                  <ContactLink href="mailto:info@martinatto.com" label="Email .com">
+                    <Mail className="h-3.5 w-3.5 shrink-0" aria-hidden />
+                    info@martinatto.com
+                  </ContactLink>
+                  <ContactLink href="mailto:info@martinatto.it" label="Email .it">
+                    <Mail className="h-3.5 w-3.5 shrink-0" aria-hidden />
+                    info@martinatto.it
+                  </ContactLink>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="mt-12 flex flex-col gap-3 border-t border-white/[0.06] pt-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
           <p>{t.footer.rights}</p>
-          <p className="bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text font-mono tracking-wider text-transparent">
-            {t.footer.tagline}
-          </p>
-        </div>
-      </div>
-    </footer>
-  );
-}
+          <p className="bg-gradient
