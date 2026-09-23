@@ -138,8 +138,9 @@ const CONFIRMATION_TEMPLATES: Record<
       "o, se serve, un link per una call gratuita di 15 minuti.",
       "",
       "A presto,",
+      "",
       "Vanessa Martinatto",
-      "Martinatto Tech_Studio — AI Software & Consulting",
+      "AI Software & Consulting",
     ].join("\n"),
   },
   en: {
@@ -152,8 +153,9 @@ const CONFIRMATION_TEMPLATES: Record<
       "or — if useful — a link to book a free 15-minute call.",
       "",
       "Talk soon,",
+      "",
       "Vanessa Martinatto",
-      "Martinatto Tech_Studio — AI Software & Consulting",
+      "AI Software & Consulting",
     ].join("\n"),
   },
   pt: {
@@ -166,8 +168,9 @@ const CONFIRMATION_TEMPLATES: Record<
       "ou — se for útil — com um link para uma call gratuita de 15 minutos.",
       "",
       "Até breve,",
+      "",
       "Vanessa Martinatto",
-      "Martinatto Tech_Studio — AI Software & Consulting",
+      "AI Software & Consulting",
     ].join("\n"),
   },
 };
