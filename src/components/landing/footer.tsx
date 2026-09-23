@@ -161,4 +161,11 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col gap-3 border-t border-white/[0.06] pt-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
           <p>{t.footer.rights}</p>
-          <p className="bg-gradient
+          <p className="bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text font-mono tracking-wider text-transparent">
+            {t.footer.tagline}
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}
