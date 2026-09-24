@@ -57,6 +57,10 @@ export const metadata: Metadata = {
   authors: [{ name: "Vanessa Martinatto" }],
   creator: "Vanessa Martinatto",
   category: "technology",
+  /* SEO — Verificação de propriedade no Google Search Console */
+  verification: {
+    google: "NjtZ6tiP--ng1aqEiwUVTteoBzUQg8AegSyebqQ8BOw",
+  },
   alternates: {
     canonical: "/",
   },
